@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ personal_info.name }} — {{ personal_info.title }}</title>
+    
+    <!-- SEO & Metadata -->
+    <meta name="description" content="AI/ML Engineer, Data Scientist and Builder portfolio of Anshuman Maurya. Exploring Generative AI, MLOps, and self-hosted infrastructure.">
+    <meta name="keywords" content="Anshuman Maurya, AI Engineer, ML Engineer, Data Scientist, MLOps, LangChain, RAG, Self-hosted, Docker, Streamlit">
+    
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Anshuman Maurya — AI/ML Engineer & Builder">
+    <meta property="og:description" content="Exploring AI systems from model training to production-grade self-hosted infrastructure.">
+    <meta property="og:image" content="/static/og-image.png">
+    <link rel="icon" type="image/jpeg" href="/static/anshuman.jpg">
+    
+    <!-- Tailwind CSS & Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        cyber: {
+                            bg: '#09090b', // Zinc 950
+                            panel: '#18181b', // Zinc 900
+                            border: '#27272a', // Zinc 800
+                            accent: '#3b82f6', // Electric Blue
+                            accentGlow: 'rgba(59, 130, 246, 0.15)',
+                            cyan: '#06b6d4', // Teal/Cyan
+                            cyanGlow: 'rgba(6, 182, 212, 0.15)',
+                            green: '#10b981', // Emerald
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #09090b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3f3f46;
+        }
+        
+        /* Grid Overlay Background */
+        .cyber-grid {
+            background-size: 4rem 4rem;
+            background-image: 
+                linear-gradient(to right, rgba(63, 63, 70, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(63, 63, 70, 0.05) 1px, transparent 1px);
+        }
+        
+        /* Glassmorphism Panel */
+        .glass-panel {
+            background: rgba(24, 24, 27, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(63, 63, 70, 0.4);
+        }
+        
+        .glass-panel-glow {
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.05);
+        }
+
+        /* Scanning Line Effect on Photo */
+        .scanline-container::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+        
+        .scanline-line {
+            width: 100%;
+            height: 4px;
+            background: rgba(6, 182, 212, 0.3);
+            position: absolute;
+            animation: scan 6s linear infinite;
+            z-index: 10;
+            pointer-events: none;
+            box-shadow: 0 0 8px rgba(6, 182, 212, 0.8);
+        }
+        
+        @keyframes scan {
+            0% { top: 0%; }
+            50% { top: 100%; }
+            100% { top: 0%; }
+        }
+        
+        /* Active Timeline Dot pulse */
+        .active-dot-glow {
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-cyber-bg text-zinc-300 font-sans min-h-screen selection:bg-cyber-accent selection:text-white relative overflow-x-hidden cyber-grid">
+
+    <!-- Top Glow Effect -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] bg-cyber-accentGlow blur-[120px] rounded-full pointer-events-none -z-10"></div>
+    <div class="absolute top-1/3 right-10 w-[300px] h-[300px] bg-cyber-cyanGlow blur-[100px] rounded-full pointer-events-none -z-10"></div>
+
+    <!-- COMMAND PALETTE (MODAL) -->
+    <div id="command-palette" class="fixed inset-0 bg-zinc-950/80 backdrop-blur-sm z-50 hidden flex items-start justify-center pt-24 px-4">
+        <div class="w-full max-w-2xl bg-zinc-900 border border-zinc-800 rounded-lg shadow-2xl overflow-hidden font-mono text-sm">
+            <div class="flex items-center border-b border-zinc-800 px-4 py-3 bg-zinc-950">
+                <span class="text-cyber-accent mr-2 font-bold">&gt;</span>
+                <input type="text" id="cmd-input" placeholder="Type a command or search... (e.g., 'help', 'projects', 'ssh')" class="w-full bg-transparent border-none outline-none text-zinc-100 placeholder-zinc-500 focus:ring-0">
+                <span class="text-xs text-zinc-500 bg-zinc-800 border border-zinc-700 px-2 py-0.5 rounded">ESC</span>
+            </div>
+            <div id="cmd-results" class="max-h-72 overflow-y-auto p-2 space-y-1">
+                <!-- Commands populate here -->
+            </div>
+            <div class="flex justify-between items-center border-t border-zinc-800 px-4 py-2 bg-zinc-950 text-xs text-zinc-500">
+                <span>Use <kbd class="bg-zinc-800 px-1 rounded">↑</kbd> <kbd class="bg-zinc-800 px-1 rounded">↓</kbd> to navigate, <kbd class="bg-zinc-800 px-1 rounded">Enter</kbd> to select</span>
+                <span>CMD + K</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER NAVIGATION -->
+    <header class="sticky top-0 z-40 w-full border-b border-zinc-800/80 bg-cyber-bg/70 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="relative w-8 h-8 rounded border border-cyber-accent/30 flex items-center justify-center bg-zinc-900 overflow-hidden font-mono font-bold text-cyber-accent group-hover:border-cyber-accent transition-all duration-300">
+                    AM
+                </div>
+                <div>
+                    <span class="text-zinc-100 font-bold tracking-tight font-mono text-sm">ANSHUMAN.SYS</span>
+                    <div class="flex items-center space-x-1.5 mt-0.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-cyber-green animate-pulse"></span>
+                        <span class="text-[10px] text-zinc-500 font-mono tracking-widest uppercase">Hosted on My Server</span>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Desktop Links -->
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                <a href="#home" class="text-zinc-400 hover:text-zinc-100 transition-colors">Home</a>
+                <a href="#journey" class="text-zinc-400 hover:text-zinc-100 transition-colors">Journey</a>
+                <a href="#projects" class="text-zinc-400 hover:text-zinc-100 transition-colors">Projects</a>
+                <a href="#lab" class="text-zinc-400 hover:text-zinc-100 transition-colors">Lab</a>
+                <a href="#infrastructure" class="text-zinc-400 hover:text-zinc-100 transition-colors">Infra</a>
+                <a href="#build-log" class="text-zinc-400 hover:text-zinc-100 transition-colors">Build Log</a>
+                <a href="#now" class="text-zinc-400 hover:text-zinc-100 transition-colors">Now</a>
+                <a href="#contact" class="text-zinc-400 hover:text-zinc-100 transition-colors">Contact</a>
+                <a href="/static/Anshuman_resume.pdf" download="Anshuman_Maurya_Resume.pdf" class="text-cyber-accent hover:text-blue-400 font-mono text-xs transition-colors flex items-center space-x-1">[resume.pdf]</a>
+            </nav>
+            
+            <!-- Search & Actions -->
+            <div class="flex items-center space-x-3">
+                <button onclick="toggleCommandPalette()" class="flex items-center space-x-2 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-700 px-3 py-1.5 rounded-md font-mono text-xs text-zinc-400 transition-all">
+                    <span>Search</span>
+                    <kbd class="bg-zinc-950 border border-zinc-700 px-1.5 py-0.5 rounded text-[10px] uppercase font-sans">Ctrl+K</kbd>
+                </button>
+                <a href="#contact" class="hidden sm:inline-flex bg-cyber-accent hover:bg-blue-600 text-white text-xs font-mono font-medium px-4 py-2 rounded border border-blue-400/20 shadow-md shadow-blue-500/10 hover:shadow-blue-500/20 active:translate-y-0.5 transition-all">
+                    connect_session()
+                </a>
+                
+                <!-- Mobile menu button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-zinc-400 hover:text-zinc-100 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-zinc-800 bg-zinc-950/95 px-4 pt-2 pb-4 space-y-2 text-sm font-medium">
+            <a href="#home" onclick="toggleMobileMenu()" class="block py-2 text-zinc-400 hover:text-zinc-100">Home</a>
+            <a href="#journey" onclick="toggleMobileMenu()" class="block py-2 text-zinc-400 hover:text-zinc-100">Journey</a>
+            <a href="#projects" onclick="toggleMobileMenu()" class="block py-2 text-zinc-400 hover:text-zinc-100">Projects</a>
+            <a href="#lab" onclick="toggleMobileMenu()" class="block py-2 text-zinc-400 hover:text-zinc-100">Lab</a>
+            <a href="#infrastructure" onclick="toggleMobileMenu()" class="block py-2 text-zinc-400 hover:text-zinc-100">Infrastructure</a>
+            <a href="#build-log" onclick="toggleMobileMenu()" class="block py-2 text-zinc-400 hover:text-zinc-100">Build Log</a>
+            <a href="#now" onclick="toggleMobileMenu()" class="block py-2 text-zinc-400 hover:text-zinc-100">Currently Building</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-zinc-400 hover:text-zinc-100">Contact</a>
+            <a href="/static/Anshuman_resume.pdf" download="Anshuman_Maurya_Resume.pdf" onclick="toggleMobileMenu()" class="block py-2 text-cyber-accent font-mono">[resume.pdf]</a>
+        </div>
+    </header>
+
+    <!-- PROJECT DETAIL DRAWER (SLIDE OUT OVERLAY) -->
+    <div id="project-drawer" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeProjectDrawer()"></div>
+        <div class="absolute top-0 right-0 h-full w-full max-w-3xl bg-zinc-900 border-l border-zinc-800 overflow-y-auto shadow-2xl flex flex-col">
+            <!-- Header -->
+            <div class="sticky top-0 bg-zinc-900 border-b border-zinc-800 px-6 py-4 flex items-center justify-between z-10">
+                <div>
+                    <span class="text-[10px] text-cyber-accent font-mono font-semibold uppercase tracking-widest" id="drawer-subtitle">PROJECT PIPELINE</span>
+                    <h2 class="text-xl font-extrabold text-zinc-100" id="drawer-name">Project Details</h2>
+                </div>
+                <button onclick="closeProjectDrawer()" class="text-zinc-400 hover:text-zinc-100 p-2 rounded-lg border border-zinc-800 bg-zinc-950/50 hover:bg-zinc-800 transition-all">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Drawer Body -->
+            <div class="p-6 md:p-8 space-y-8 flex-1">
+                <!-- Direct Links -->
+                <div class="flex flex-wrap gap-3">
+                    <a id="drawer-github" href="#" target="_blank" class="inline-flex items-center space-x-2 bg-zinc-950 border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900 px-4 py-2 rounded text-xs font-mono text-zinc-300 transition-all">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                        <span>source_code_repo</span>
+                    </a>
+                    <a id="drawer-demo" href="#" target="_blank" class="inline-flex items-center space-x-2 bg-cyber-accent/15 border border-cyber-accent/30 hover:border-cyber-accent hover:bg-cyber-accent/35 px-4 py-2 rounded text-xs font-mono text-cyber-accent transition-all">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        <span>launch_live_deployment</span>
+                    </a>
+                    <span id="demo-fallback" class="hidden inline-flex items-center space-x-2 bg-zinc-950 border border-zinc-800 px-4 py-2 rounded text-xs font-mono text-zinc-500">
+                        <span class="w-1.5 h-1.5 rounded-full bg-zinc-600"></span>
+                        <span>local_deployment_only</span>
+                    </span>
+                </div>
+
+                <!-- Technologies -->
+                <div>
+                    <h3 class="text-xs font-mono text-zinc-500 uppercase tracking-widest mb-3">ENGINEERING COMPILER</h3>
+                    <div class="flex flex-wrap gap-2" id="drawer-tech">
+                        <!-- Badges populate dynamically -->
+                    </div>
+                </div>
+
+                <div class="border-t border-zinc-800/80 pt-6 space-y-6">
+                    <!-- Problem & Goal -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-zinc-950/40 p-4 rounded border border-zinc-800/50">
+                            <h4 class="text-sm font-bold text-zinc-100 flex items-center mb-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-red-500 mr-2"></span>
+                                PROBLEM STATEMENT
+                            </h4>
+                            <p class="text-xs text-zinc-400 leading-relaxed font-sans" id="drawer-problem"></p>
+                        </div>
+                        <div class="bg-zinc-950/40 p-4 rounded border border-zinc-800/50">
+                            <h4 class="text-sm font-bold text-zinc-100 flex items-center mb-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-cyber-green mr-2"></span>
+                                DESIGN GOAL
+                            </h4>
+                            <p class="text-xs text-zinc-400 leading-relaxed font-sans" id="drawer-goal"></p>
+                        </div>
+                    </div>
+
+                    <!-- Flow Diagram (Interactive Pipeline) -->
+                    <div>
+                        <h4 class="text-sm font-bold text-zinc-100 mb-3 flex items-center font-mono">
+                            <span class="text-cyber-cyan mr-1.5">&gt;</span> SYSTEM_DATA_PIPELINE.sh
+                        </h4>
+                        <div class="bg-zinc-950 p-4 rounded border border-zinc-800 overflow-x-auto flex items-center space-x-3 py-6 min-w-full font-mono text-[10px] text-center" id="drawer-pipeline-flow">
+                            <!-- Populated in Javascript -->
+                        </div>
+                    </div>
+
+                    <!-- Architectural Overview -->
+                    <div>
+                        <h4 class="text-sm font-bold text-zinc-100 mb-2">System Architecture</h4>
+                        <p class="text-xs text-zinc-400 leading-relaxed font-sans" id="drawer-architecture"></p>
+                    </div>
+
+                    <!-- Engineering Decisions -->
+                    <div>
+                        <h4 class="text-sm font-bold text-zinc-100 mb-2">Engineering Decisions</h4>
+                        <p class="text-xs text-zinc-400 leading-relaxed font-sans" id="drawer-decisions"></p>
+                    </div>
+
+                    <!-- Challenges & Optimization -->
+                    <div>
+                        <h4 class="text-sm font-bold text-zinc-100 mb-2">Development Challenges</h4>
+                        <p class="text-xs text-zinc-400 leading-relaxed font-sans" id="drawer-challenges"></p>
+                    </div>
+
+                    <!-- Results & Metrics -->
+                    <div>
+                        <h4 class="text-sm font-bold text-zinc-100 mb-2">Results & Capabilities</h4>
+                        <p class="text-xs text-zinc-400 leading-relaxed font-sans" id="drawer-results"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN BODY -->
+    <main class="max-w-7xl mx-auto px-4 md:px-8 space-y-32 py-16">
+
+        <!-- 1. HERO SECTION -->
+        <section id="home" class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center pt-8">
+            <div class="lg:col-span-7 space-y-6">
+                <!-- System Status Pulse banner -->
+                <div class="inline-flex items-center space-x-2 bg-zinc-900/60 border border-zinc-800 px-3 py-1 rounded-full text-xs font-mono">
+                    <span class="w-2 h-2 rounded-full bg-cyber-green animate-pulse"></span>
+                    <span class="text-[10px] text-zinc-400 tracking-wider uppercase">PORTFOLIO NODE: ONLINE • API_LATENCY: 12ms</span>
+                </div>
+                
+                <div class="space-y-1">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-none">
+                        {{ personal_info.name }}
+                    </h1>
+                    <p class="text-xs sm:text-sm font-mono text-cyber-accent font-semibold tracking-wider uppercase pt-1">
+                        {{ personal_info.title }}
+                    </p>
+                </div>
+                
+                <h3 class="text-lg sm:text-xl font-mono text-cyber-cyan font-medium">
+                    {{ personal_info.tagline }}
+                </h3>
+                
+                <div class="text-xs sm:text-sm text-zinc-400 font-sans max-w-2xl leading-relaxed space-y-3">
+                    {% if personal_info.about_paragraphs %}
+                        {% for p in personal_info.about_paragraphs %}
+                            <p>{{ p|safe }}</p>
+                        {% endfor %}
+                    {% else %}
+                        <p>{{ personal_info.about_me }}</p>
+                    {% endif %}
+                </div>
+                
+                <!-- CTA buttons -->
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <a href="#projects" class="inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 hover:border-cyber-accent hover:text-white px-6 py-3 rounded text-sm font-mono text-zinc-300 shadow-lg shadow-black/40 hover:shadow-cyber-accent/5 transition-all">
+                        explore_work()
+                    </a>
+                    <a href="#lab" class="inline-flex items-center justify-center bg-cyber-accent/10 border border-cyber-accent/30 hover:border-cyber-accent hover:bg-cyber-accent/20 px-6 py-3 rounded text-sm font-mono text-cyber-accent shadow-lg shadow-cyber-accent/5 hover:shadow-cyber-accent/15 transition-all">
+                        enter_lab_env()
+                    </a>
+                    <a href="/static/Anshuman_resume.pdf" download="Anshuman_Maurya_Resume.pdf" class="inline-flex items-center justify-center bg-zinc-950 border border-zinc-850 hover:border-zinc-700 hover:text-white px-6 py-3 rounded text-sm font-mono text-zinc-400 hover:bg-zinc-900 shadow-lg transition-all">
+                        download_resume()
+                    </a>
+                </div>
+                
+                <!-- Social Links Grid -->
+                <div class="pt-6 space-y-3">
+                    <h3 class="text-xs font-mono text-zinc-500 uppercase tracking-widest">EXTERNAL_NODES_CONNECT</h3>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="{{ social_links.github }}" target="_blank" class="text-zinc-400 hover:text-zinc-100 transition-colors flex items-center space-x-1.5 text-xs font-mono">
+                            <span>[GitHub]</span>
+                        </a>
+                        <a href="{{ social_links.linkedin }}" target="_blank" class="text-zinc-400 hover:text-zinc-100 transition-colors flex items-center space-x-1.5 text-xs font-mono">
+                            <span>[LinkedIn]</span>
+                        </a>
+                        <a href="{{ social_links.youtube }}" target="_blank" class="text-zinc-400 hover:text-zinc-100 transition-colors flex items-center space-x-1.5 text-xs font-mono">
+                            <span>[YouTube]</span>
+                        </a>
+                        <a href="{{ social_links.leetcode }}" target="_blank" class="text-zinc-400 hover:text-zinc-100 transition-colors flex items-center space-x-1.5 text-xs font-mono">
+                            <span>[LeetCode]</span>
+                        </a>
+                        <a href="{{ social_links.email_link }}" class="text-zinc-400 hover:text-zinc-100 transition-colors flex items-center space-x-1.5 text-xs font-mono">
+                            <span>[Email]</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Photo & Scanning System Console Grid -->
+            <div class="lg:col-span-5 flex flex-col items-center justify-center space-y-4">
+                <div class="relative w-64 h-64 md:w-72 md:h-72 rounded-lg border border-zinc-800 bg-zinc-900/60 p-2 overflow-hidden group shadow-2xl glass-panel-glow">
+                    <!-- Scanning Line Anim -->
+                    <div class="scanline-container absolute inset-2 overflow-hidden rounded bg-zinc-950">
+                        <div class="scanline-line"></div>
+                        <img src="/static/anshuman.jpg?v=1.0.1" alt="Anshuman Maurya" class="w-full h-full object-cover grayscale contrast-[1.05] group-hover:scale-105 group-hover:grayscale-0 transition-all duration-700 relative z-10 opacity-85">
+                    </div>
+                    <!-- Frame details -->
+                    <span class="absolute top-4 left-4 z-20 text-[9px] font-mono text-cyber-cyan bg-zinc-900/80 border border-zinc-800/80 px-1.5 py-0.5 rounded">NODE_01: ACTIVE</span>
+                    <span class="absolute bottom-4 right-4 z-20 text-[8px] font-mono text-zinc-500 bg-zinc-900/80 px-1.5 py-0.5 rounded">53.0722° N, 8.8010° E</span>
+                </div>
+                
+                <!-- Small console box -->
+                <div class="w-full max-w-sm bg-zinc-950/80 border border-zinc-800 rounded p-3 font-mono text-[10px] space-y-1.5 text-zinc-500 shadow-lg">
+                    <div class="flex justify-between items-center text-zinc-400 border-b border-zinc-800/50 pb-1 mb-2">
+                        <span>sys_boot_sequence.log</span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-cyber-green"></span>
+                    </div>
+                    <p class="text-zinc-400">ANSHUMAN@HOME_SERVER:~$ ./init_portfolio.sh</p>
+                    <p>&gt; Checking system dependencies... OK</p>
+                    <p>&gt; Mounting templates/index.html... OK</p>
+                    <p>&gt; Syncing data.py content engine... OK</p>
+                    <p class="text-cyber-green">&gt; Systems initialized. Welcome to the lab environment.</p>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <!-- 3. JOURNEY TIMELINE SECTION -->
+        <section id="journey" class="space-y-8 scroll-mt-20">
+            <div class="space-y-2 border-b border-zinc-800 pb-3">
+                <h2 class="text-xl font-bold tracking-tight text-white flex items-center font-mono">
+                    <span class="text-cyber-accent mr-2">/</span> MY_LEARNING_JOURNEY
+                </h2>
+                <p class="text-xs text-zinc-500 font-sans">A chronological narrative of my build experiences and system transitions.</p>
+            </div>
+            
+            <div class="relative pl-6 md:pl-12 border-l border-zinc-800 space-y-12">
+                {% for milestone in timeline %}
+                <div class="relative group milestone-entry">
+                    <!-- Dot -->
+                    <div class="absolute -left-[31px] md:-left-[55px] top-1 w-4 h-4 rounded-full border-2 border-zinc-800 bg-zinc-950 group-hover:border-cyber-accent active-dot-glow transition-all duration-300"></div>
+                    
+                    <!-- Content -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8">
+                        <div class="font-mono text-sm">
+                            <span class="text-zinc-500 block">{{ milestone.year }}</span>
+                            <span class="text-[10px] tracking-wider uppercase text-cyber-cyan border border-cyber-cyan/20 px-1.5 py-0.5 rounded bg-cyber-cyan/5 inline-block mt-1">{{ milestone.category }}</span>
+                        </div>
+                        <div class="md:col-span-3 space-y-2">
+                            <h3 class="text-base font-bold text-white group-hover:text-cyber-accent transition-colors">{{ milestone.title }}</h3>
+                            <h4 class="text-xs font-mono text-zinc-400 font-semibold">{{ milestone.subtitle }}</h4>
+                            <p class="text-xs text-zinc-400 font-sans leading-relaxed">{{ milestone.description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- 4. ENGINEERING PROJECTS SECTION -->
+        <section id="projects" class="space-y-8 scroll-mt-20">
+            <div class="space-y-2 border-b border-zinc-800 pb-3">
+                <h2 class="text-xl font-bold tracking-tight text-white flex items-center font-mono">
+                    <span class="text-cyber-accent mr-2">#</span> ENGINEERING_PROJECTS
+                </h2>
+                <p class="text-xs text-zinc-500 font-sans">Click on any project to view technical architecture, engineering decisions, and implementation details.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {% for project in projects %}
+                <div onclick="openProjectDrawer('{{ project.id }}')" class="group bg-zinc-900/30 hover:bg-zinc-900/60 border border-zinc-800 hover:border-zinc-700/80 p-5 rounded-lg flex flex-col justify-between cursor-pointer glass-panel-glow hover:scale-[1.01] active:scale-[0.99] transition-all duration-300">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div class="relative w-8 h-8 rounded border border-zinc-800 flex items-center justify-center bg-zinc-950 font-mono text-xs text-zinc-500 font-semibold group-hover:border-cyber-accent group-hover:text-cyber-accent transition-colors">
+                                P0{{ loop.index }}
+                            </div>
+                            <span class="text-[9px] font-mono text-zinc-600 bg-zinc-950 border border-zinc-800/80 px-2 py-0.5 rounded group-hover:text-cyber-cyan transition-colors">DETAILS &gt;</span>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-zinc-100 group-hover:text-cyber-accent transition-colors">{{ project.name }}</h3>
+                            <p class="text-xs font-mono text-zinc-500 mt-0.5">{{ project.subtitle }}</p>
+                        </div>
+                        <p class="text-xs text-zinc-400 font-sans leading-relaxed line-clamp-3">{{ project.details.problem }}</p>
+                    </div>
+                    
+                    <div class="border-t border-zinc-800/60 pt-4 mt-6">
+                        <div class="flex flex-wrap gap-1.5">
+                            {% for tech in project.technologies[:4] %}
+                            <span class="text-[9px] font-mono text-zinc-500 bg-zinc-950 border border-zinc-800/60 px-2 py-0.5 rounded">{{ tech }}</span>
+                            {% endfor %}
+                            {% if project.technologies|length > 4 %}
+                            <span class="text-[9px] font-mono text-zinc-600 bg-zinc-950 border border-zinc-800/60 px-2 py-0.5 rounded">+{{ project.technologies|length - 4 }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- 5. ANSHUMAN LAB SECTION -->
+        <section id="lab" class="space-y-8 scroll-mt-20">
+            <div class="space-y-2 border-b border-zinc-800 pb-3">
+                <h2 class="text-xl font-bold tracking-tight text-white flex items-center font-mono">
+                    <span class="text-cyber-accent mr-2">::</span> ANSHUMAN_LAB
+                </h2>
+                <p class="text-xs text-zinc-500 font-sans">Simulated infrastructure control room showing active microservices, local databases, and orchestrators ready for future integration.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Virtual Containers Grid -->
+                <div class="lg:col-span-2 space-y-4">
+                    <h3 class="text-xs font-mono text-zinc-500 uppercase tracking-widest flex items-center">
+                        <span class="w-1.5 h-1.5 rounded-full bg-cyber-cyan mr-1.5 animate-pulse"></span>
+                        ACTIVE_CONTAINERS_DECODER.log
+                    </h3>
+                    
+                    <div class="bg-zinc-950 border border-zinc-800 rounded overflow-x-auto">
+                        <table class="w-full text-left font-mono text-xs">
+                            <thead class="bg-zinc-900 border-b border-zinc-800 text-zinc-500 text-[10px]">
+                                <tr>
+                                    <th class="p-3">CONTAINER</th>
+                                    <th class="p-3">SERVICE TYPE</th>
+                                    <th class="p-3">BIND PORT</th>
+                                    <th class="p-3">STATUS</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-zinc-900" id="container-table-body">
+                                {% for svc in lab_services %}
+                                <tr class="hover:bg-zinc-900/20">
+                                    <td class="p-3 text-zinc-300 font-semibold">{{ svc.name }}</td>
+                                    <td class="p-3 text-zinc-500">{{ svc.type }}</td>
+                                    <td class="p-3 text-zinc-500">:{{ svc.port }}</td>
+                                    <td class="p-3">
+                                        {% if 'Online' in svc.status %}
+                                        <span class="inline-flex items-center text-cyber-green text-[10px]">
+                                            <span class="w-1 h-1 rounded-full bg-cyber-green mr-1.5"></span>
+                                            online
+                                        </span>
+                                        {% elif 'Building' in svc.status %}
+                                        <span class="inline-flex items-center text-amber-500 text-[10px] animate-pulse">
+                                            <span class="w-1 h-1 rounded-full bg-amber-500 mr-1.5"></span>
+                                            building
+                                        </span>
+                                        {% else %}
+                                        <span class="inline-flex items-center text-zinc-600 text-[10px]">
+                                            <span class="w-1 h-1 rounded-full bg-zinc-600 mr-1.5"></span>
+                                            offline
+                                        </span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Published Applications -->
+                <div class="bg-zinc-900/30 border border-zinc-800 p-5 rounded-lg space-y-4 glass-panel-glow">
+                    <h4 class="text-sm font-bold text-white font-mono flex items-center mb-4">
+                        <span class="text-cyber-cyan mr-1.5">◇</span> PUBLISHED_APPLICATIONS
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        {% for app in published_applications %}
+                        <a href="{{ app.link }}" target="_blank" rel="noopener noreferrer" class="group bg-zinc-900/50 hover:bg-zinc-900 border border-zinc-800 hover:border-cyber-cyan/50 p-4 rounded-lg transition-all duration-300 flex flex-col justify-between">
+                            <div class="space-y-2">
+                                <div class="flex items-start justify-between">
+                                    <h5 class="text-sm font-bold text-white group-hover:text-cyber-cyan transition-colors">{{ app.domain }}</h5>
+                                    <span class="text-[9px] font-mono text-cyber-green bg-cyber-green/10 px-2 py-0.5 rounded">{{ app.status }}</span>
+                                </div>
+                                <p class="text-[11px] text-zinc-400 font-sans">{{ app.title }}</p>
+                                <p class="text-[10px] text-zinc-500 font-sans leading-relaxed">{{ app.description }}</p>
+                            </div>
+                            <div class="border-t border-zinc-800/50 pt-3 mt-3 flex items-center justify-between">
+                                <span class="text-[9px] font-mono text-zinc-600">{{ app.routing }}</span>
+                                <span class="text-cyber-cyan group-hover:translate-x-1 transition-transform">→</span>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="bg-zinc-900/30 border border-zinc-800 p-5 rounded-lg space-y-4 flex flex-col justify-between glass-panel-glow">
+                    <div class="space-y-3">
+                        <h4 class="text-sm font-bold text-white font-mono flex items-center">
+                            <span class="text-cyber-accent mr-1.5">&gt;</span> INFRASTRUCTURE_STACK
+                        </h4>
+                        <p class="text-xs text-zinc-400 font-sans leading-relaxed">
+                            All services are managed through <strong>Coolify</strong> — an open-source self-hosted alternative to Vercel/Heroku. 
+                            This orchestrator handles containerized deployments, reverse proxy routing, and monitoring for all applications.
+                        </p>
+                        <p class="text-[10px] font-mono text-zinc-500">
+                            <strong class="text-cyber-cyan">Routing via Cloudflare Tunnel:</strong> All domains are securely tunneled through Cloudflare, 
+                            which routes incoming traffic to the appropriate backend service based on domain matching. This provides automatic HTTPS, 
+                            DDoS protection, and seamless load balancing.
+                        </p>
+                        <p class="text-[10px] font-mono text-zinc-500 mt-2">
+                            Visit the published applications above to explore my portfolio, client work, and admin dashboards. 
+                            Each domain is independently managed and can be accessed via direct links.
+                        </p>
+                    </div>
+                    <div class="bg-zinc-950 border border-zinc-800/80 p-3 rounded font-mono text-[9px] text-zinc-500 space-y-1">
+                        <p># Coolify Deploy Command</p>
+                        <p class="text-zinc-400">cd /root/coolify && docker compose up -d</p>
+                        <p class="text-zinc-600">Infrastructure orchestration active...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. SELF-HOSTED INFRASTRUCTURE STORY -->
+        <section id="infrastructure" class="space-y-8 scroll-mt-20">
+            <div class="space-y-2 border-b border-zinc-800 pb-3">
+                <h2 class="text-xl font-bold tracking-tight text-white flex items-center font-mono">
+                    <span class="text-cyber-accent mr-2">\</span> SELF_HOSTED_INFRASTRUCTURE
+                </h2>
+                <p class="text-xs text-zinc-500 font-sans">The conceptual topology showing how my development code moves from local machines to containerized server deployments.</p>
+            </div>
+
+            <div class="bg-zinc-900/10 border border-zinc-800/80 p-6 md:p-8 rounded-lg space-y-8 glass-panel-glow">
+                <!-- SVG Pipeline Diagram -->
+                <div class="w-full overflow-x-auto py-4">
+                    <svg viewBox="0 0 1000 160" class="min-w-[800px] w-full font-mono text-[10px] tracking-tight">
+                        <!-- Node Lines -->
+                        <path d="M120 80 H880" stroke="#27272a" stroke-width="2" stroke-dasharray="4 4" />
+                        
+                        <!-- Pulsing flow line (simulated) -->
+                        <path id="pulse-path" d="M120 80 H880" stroke="#3b82f6" stroke-width="2" stroke-dasharray="20 180" class="animate-[pulse-slow_3s_linear_infinite]" opacity="0.8" />
+                        
+                        <!-- Local Machine Node -->
+                        <g transform="translate(100, 80)">
+                            <circle r="35" fill="#09090b" stroke="#3b82f6" stroke-width="2" />
+                            <text text-anchor="middle" y="-5" fill="#ffffff" font-weight="bold">LOCAL</text>
+                            <text text-anchor="middle" y="10" fill="#3b82f6" font-size="8">WORKSTATION</text>
+                            <text text-anchor="middle" y="55" fill="#52525b">Code & Train</text>
+                        </g>
+
+                        <!-- GitHub Node -->
+                        <g transform="translate(280, 80)">
+                            <circle r="35" fill="#09090b" stroke="#27272a" stroke-width="1" />
+                            <text text-anchor="middle" y="-5" fill="#a1a1aa">GIT PUSH</text>
+                            <text text-anchor="middle" y="10" fill="#52525b" font-size="8">GITHUB REPO</text>
+                            <text text-anchor="middle" y="55" fill="#52525b">Repo Hook</text>
+                        </g>
+
+                        <!-- Linux Server Node -->
+                        <g transform="translate(460, 80)">
+                            <circle r="35" fill="#09090b" stroke="#27272a" stroke-width="1" />
+                            <text text-anchor="middle" y="-5" fill="#a1a1aa">LINUX</text>
+                            <text text-anchor="middle" y="10" fill="#52525b" font-size="8">DEBIAN HOST</text>
+                            <text text-anchor="middle" y="55" fill="#52525b">Docker Host</text>
+                        </g>
+
+                        <!-- Coolify Node -->
+                        <g transform="translate(640, 80)">
+                            <circle r="35" fill="#09090b" stroke="#06b6d4" stroke-width="2" />
+                            <text text-anchor="middle" y="-5" fill="#ffffff" font-weight="bold">COOLIFY</text>
+                            <text text-anchor="middle" y="10" fill="#06b6d4" font-size="8">ORCHESTRATOR</text>
+                            <text text-anchor="middle" y="55" fill="#52525b">Server Node</text>
+                        </g>
+
+                        <!-- Deployed App Node -->
+                        <g transform="translate(820, 80)">
+                            <circle r="35" fill="#09090b" stroke="#10b981" stroke-width="2" />
+                            <text text-anchor="middle" y="-5" fill="#ffffff" font-weight="bold">PRODUCTION</text>
+                            <text text-anchor="middle" y="10" fill="#10b981" font-size="8">DOCKER SERVICE</text>
+                            <text text-anchor="middle" y="55" fill="#52525b">Online Portals</text>
+                        </g>
+                    </svg>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-zinc-800/80 font-sans">
+                    <div class="space-y-1">
+                        <h4 class="text-sm font-bold text-zinc-200">1. Clean Deploy Loops</h4>
+                        <p class="text-xs text-zinc-500 leading-relaxed">
+                            Rather than deploying via manual CLI tools, I explore automated workflows. Pushing to GitHub triggers Webhook notifications to my Debian Server.
+                        </p>
+                    </div>
+                    <div class="space-y-1">
+                        <h4 class="text-sm font-bold text-zinc-200">2. Docker Containerization</h4>
+                        <p class="text-xs text-zinc-500 leading-relaxed">
+                            Each ML model or app wrapper has its own environment definitions. By binding volume maps, I make sure databases persist separate from execution scripts.
+                        </p>
+                    </div>
+                    <div class="space-y-1">
+                        <h4 class="text-sm font-bold text-zinc-200">3. Coolify Server Deployments</h4>
+                        <p class="text-xs text-zinc-500 leading-relaxed">
+                            By managing configurations through Coolify, I receive SSL certificates automatically, manage port proxies, and see resource usage metrics in real-time.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. SKILLS CONSTELLATION SECTION -->
+        <section id="skills" class="space-y-8 scroll-mt-20">
+            <div class="space-y-2 border-b border-zinc-800 pb-3">
+                <h2 class="text-xl font-bold tracking-tight text-white flex items-center font-mono">
+                    <span class="text-cyber-accent mr-2">&gt;_</span> TECHNICAL_CONSTELLATION
+                </h2>
+                <p class="text-xs text-zinc-500 font-sans">Hover over any skill to query experience details and specific project applications in the floating console reader.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Skills List Categories -->
+                <div class="lg:col-span-8 space-y-6">
+                    {% for category, items in skills.items() %}
+                    <div class="space-y-2">
+                        <h3 class="text-xs font-mono text-zinc-500 uppercase tracking-widest">{{ category }}</h3>
+                        <div class="flex flex-wrap gap-2">
+                            {% for skill in items %}
+                            <button 
+                                onmouseover="showSkillInfo('{{ skill.name }}', '{{ skill.note|replace("'", "\\'") }}')" 
+                                onmouseout="hideSkillInfo()"
+                                class="bg-zinc-900/40 hover:bg-cyber-accentGlow border border-zinc-800 hover:border-cyber-accent px-3 py-1.5 rounded font-mono text-xs text-zinc-300 hover:text-white transition-all cursor-default"
+                            >
+                                {{ skill.name }}
+                            </button>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Floating Interactive Terminal Reader -->
+                <div class="lg:col-span-4 flex flex-col">
+                    <div class="bg-zinc-950 border border-zinc-800 rounded-lg p-4 font-mono text-xs flex-1 flex flex-col justify-between min-h-[220px] shadow-lg">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-zinc-500 border-b border-zinc-900 pb-1.5">
+                                <span>SKILL_CONSOLES.sh</span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-cyber-accent animate-pulse"></span>
+                            </div>
+                            <div id="skill-console-output" class="space-y-2 text-zinc-400">
+                                <p class="text-zinc-600"># Hover over a tech node to inspect output...</p>
+                                <p class="text-[10px] text-zinc-600">QUERY STAGE: AWAITING_MOUSEOVER</p>
+                            </div>
+                        </div>
+                        <div class="text-[9px] text-zinc-600 border-t border-zinc-900 pt-2 mt-4 flex justify-between">
+                            <span>SESSION: INACTIVE</span>
+                            <span>STREAM: EOF</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- YouTube Dynamic Videos Feed -->
+            <div class="space-y-4 pt-8 border-t border-zinc-900">
+                <h3 class="text-xs font-mono text-zinc-400 uppercase tracking-widest flex items-center">
+                    <span class="w-2 h-2 rounded-full bg-red-500 mr-2 animate-pulse"></span>
+                    LIVE_YOUTUBE_VLOGS_&amp;_TUTORIALS.sh
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {% for video in youtube_videos %}
+                    <a href="{{ video.link }}" target="_blank" class="group bg-zinc-900/20 hover:bg-zinc-900/50 border border-zinc-800 hover:border-red-500/30 rounded-lg overflow-hidden flex flex-col justify-between transition-all duration-300 shadow-lg">
+                        <div class="relative aspect-video w-full overflow-hidden bg-zinc-950">
+                            <img src="{{ video.thumbnail }}" alt="{{ video.title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                            <!-- Play button overlay -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="w-12 h-12 rounded-full bg-red-650 flex items-center justify-center text-white shadow-lg">
+                                    <svg class="w-6 h-6 fill-current pl-1" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 space-y-2 flex-1 flex flex-col justify-between">
+                            <h4 class="text-xs font-bold text-zinc-200 line-clamp-2 group-hover:text-red-400 transition-colors font-mono leading-snug">{{ video.title }}</h4>
+                            <div class="flex justify-between items-center text-[9px] font-mono text-zinc-500 pt-2 border-t border-zinc-850">
+                                <span>Published: {{ video.date }}</span>
+                                <span class="text-red-500 font-semibold">[PLAY VIDEO]</span>
+                            </div>
+                        </div>
+                    </a>
+                    {% else %}
+                    <!-- Fallback placeholder cards if no videos are returned or loading fails -->
+                    <div class="bg-zinc-900/10 border border-zinc-800/80 p-5 rounded-lg flex flex-col justify-between text-center min-h-[180px] justify-center items-center col-span-3">
+                        <span class="text-xs font-mono text-zinc-500">AWAITING_DEMAND_FETCH_OR_FEED_ERROR</span>
+                        <p class="text-[10px] text-zinc-600 mt-2">Could not retrieve the live feed. Please check back later or view directly on YouTube.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. CURRENTLY BUILDING / NOW SECTION -->
+        <section id="now" class="space-y-8 scroll-mt-20">
+            <div class="space-y-2 border-b border-zinc-800 pb-3">
+                <h2 class="text-xl font-bold tracking-tight text-white flex items-center font-mono">
+                    <span class="text-cyber-accent mr-2">&amp;</span> CURRENTLY_BUILDING_&amp;_LEARNING
+                </h2>
+                <p class="text-xs text-zinc-500 font-sans">This section represents what I am working toward next, distinguishing it from completed resume items.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {% for build in currently_building %}
+                <div class="bg-zinc-900/40 border border-zinc-800 p-5 rounded-lg space-y-3 relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-cyber-accent group-hover:bg-cyber-cyan transition-colors"></div>
+                    <h3 class="text-sm font-bold text-white font-mono pl-2">{{ build.title }}</h3>
+                    <p class="text-xs text-zinc-400 font-sans leading-relaxed pl-2">{{ build.description }}</p>
+                    {% if build.technologies %}
+                    <div class="text-[9px] font-mono text-zinc-500 pl-2 pt-2 border-t border-zinc-800/50 pt-3">
+                        <span class="text-cyber-cyan font-semibold">STACK:</span> {{ build.technologies }}
+                    </div>
+                    {% endif %}
+                    <div class="text-[9px] font-mono text-zinc-600 pl-2 uppercase pt-2">
+                        STATUS: 
+                        {% if 'ACTIVE' in build.status %}
+                        <span class="text-cyber-green font-semibold">{{ build.status }}</span>
+                        {% else %}
+                        <span class="text-amber-600">{{ build.status }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- 10. ACHIEVEMENTS SECTION -->
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-6 border-y border-zinc-800/80 py-12">
+            {% for ach in achievements %}
+            <div class="text-center space-y-1">
+                <span class="text-3xl md:text-4xl font-mono font-bold text-white tracking-tight block">{{ ach.metric }}</span>
+                <span class="text-xs font-mono text-cyber-cyan block font-medium">{{ ach.label }}</span>
+                <span class="text-[10px] text-zinc-500 block leading-tight px-2">{{ ach.description }}</span>
+            </div>
+            {% endfor %}
+        </section>
+
+        <!-- 11. CONTACT & LET'S BUILD -->
+        <section id="contact" class="grid grid-cols-1 lg:grid-cols-12 gap-12 scroll-mt-20">
+            <div class="lg:col-span-5 space-y-4">
+                <span class="text-[10px] text-cyber-accent font-mono font-bold uppercase tracking-widest">CONNECT_SESSION</span>
+                <h2 class="text-3xl font-extrabold text-white leading-none">LET'S BUILD SOMETHING.</h2>
+                <p class="text-xs text-zinc-400 font-sans leading-relaxed">
+                    Have an idea for an AI application, need assistance configuring your server deployment pipelines, 
+                    or looking to recruit a builder who is enthusiastic about system architectures? 
+                    Get in touch.
+                </p>
+                <div class="pt-4 space-y-2 font-mono text-xs">
+                    <p class="flex items-center text-zinc-400">
+                        <span class="text-zinc-600 mr-2">Email:</span>
+                        <a href="{{ social_links.email_link }}" class="text-cyber-cyan hover:underline">{{ personal_info.email }}</a>
+                    </p>
+                    <p class="flex items-center text-zinc-400">
+                        <span class="text-zinc-600 mr-2">Phone:</span>
+                        <span class="text-zinc-300">{{ personal_info.phone }}</span>
+                    </p>
+                    <p class="flex items-center text-zinc-400">
+                        <span class="text-zinc-600 mr-2">Loc:</span>
+                        <span class="text-zinc-300">{{ personal_info.location }}</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Contact Form UI -->
+            <div class="lg:col-span-7 bg-zinc-900/30 border border-zinc-800 p-6 rounded-lg glass-panel-glow space-y-4">
+                <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4 font-mono text-xs">
+                    <!-- Formspree Direct Submission Endpoint -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="space-y-1.5">
+                            <label class="text-zinc-500" for="name">NAME</label>
+                            <input required type="text" name="name" id="contact-name" class="w-full bg-zinc-950 border border-zinc-800 rounded p-2.5 outline-none text-zinc-100 focus:border-cyber-accent" placeholder="Enter name">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-zinc-500" for="email">EMAIL</label>
+                            <input required type="email" name="email" id="contact-email" class="w-full bg-zinc-950 border border-zinc-800 rounded p-2.5 outline-none text-zinc-100 focus:border-cyber-accent" placeholder="Enter email">
+                        </div>
+                    </div>
+                    <div class="space-y-1.5">
+                        <label class="text-zinc-500" for="message">MESSAGE</label>
+                        <textarea required name="message" id="contact-message" rows="4" class="w-full bg-zinc-950 border border-zinc-800 rounded p-2.5 outline-none text-zinc-100 focus:border-cyber-accent" placeholder="Type your message details..."></textarea>
+                    </div>
+                    <div class="flex justify-between items-center pt-2">
+                        <span id="form-status" class="text-[10px] text-zinc-600">AWAITING_INPUT</span>
+                        <button type="submit" class="bg-cyber-accent hover:bg-blue-600 text-white font-bold px-5 py-2.5 rounded border border-blue-400/20 transition-all flex items-center space-x-2">
+                            <span>submit_form()</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FLOATING INTERACTIVE TERMINAL EMULATOR (FOOTER) -->
+    <div id="footer-terminal" class="fixed bottom-4 right-4 z-40 w-[350px] md:w-[450px] bg-zinc-950 border border-zinc-800 rounded-lg shadow-2xl flex flex-col font-mono text-xs transition-all duration-300 max-h-[250px] overflow-hidden">
+        <!-- Terminal Header -->
+        <div class="bg-zinc-900 border-b border-zinc-800 px-3 py-2 flex items-center justify-between cursor-pointer" onclick="toggleTerminalCollapse()">
+            <div class="flex items-center space-x-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-cyber-green/80"></span>
+                <span class="text-[10px] text-zinc-500 font-semibold pl-2">SYSTEM_CONSOLE v1.02</span>
+            </div>
+            <span id="term-collapse-btn" class="text-zinc-500 text-[10px]">[Collapse]</span>
+        </div>
+        <!-- Terminal Logs -->
+        <div id="term-body" class="flex-1 p-3 overflow-y-auto space-y-1 text-[11px] text-zinc-400 bg-zinc-950 min-h-[150px] max-h-[180px]">
+            <p class="text-zinc-600"># System diagnostic tool online. Type 'help' for options.</p>
+            <div id="term-history" class="space-y-1"></div>
+            <div class="flex items-center text-zinc-300">
+                <span class="text-cyber-accent mr-1.5">&gt;</span>
+                <input type="text" id="term-input" class="w-full bg-transparent border-none outline-none focus:ring-0 text-white placeholder-zinc-700" placeholder="Type command...">
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-zinc-800/80 bg-zinc-950 py-12 font-mono text-xs">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="space-y-1.5 text-center md:text-left">
+                <p class="text-zinc-300 font-bold tracking-tight">Anshuman Maurya</p>
+                <p class="text-[10px] text-zinc-500">AI/ML Engineer • Builder • Explorer</p>
+            </div>
+            
+            <div class="text-[10px] text-zinc-500 text-center space-y-1 max-w-sm leading-normal">
+                <p>"Built with curiosity and too many terminal sessions."</p>
+                <p class="text-cyber-cyan flex items-center justify-center md:justify-end">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyber-green animate-pulse mr-1.5"></span>
+                    This website is hosted on my own server.
+                </p>
+            </div>
+            
+            <div class="flex flex-col items-center md:items-end space-y-3 font-sans">
+                <span class="text-zinc-100 font-semibold text-sm tracking-tight">Connect With Me</span>
+                <div class="flex items-center space-x-4 text-zinc-400">
+                    <a href="{{ social_links.github }}" target="_blank" class="hover:text-zinc-100 transition-colors" title="GitHub">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                            <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                        </svg>
+                    </a>
+                    <a href="{{ social_links.linkedin }}" target="_blank" class="hover:text-zinc-100 transition-colors" title="LinkedIn">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                    <a href="{{ social_links.email_link }}" class="hover:text-zinc-100 transition-colors" title="Email">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LOGIC SCRIPTS -->
+    <script>
+        // Database from FastAPI templates
+        const projectsData = {{ projects_json|safe }};
+        
+        // Command Palette Logic
+        const cmdPalette = document.getElementById('command-palette');
+        const cmdInput = document.getElementById('cmd-input');
+        const cmdResults = document.getElementById('cmd-results');
+        
+        const commands = [
+            { cmd: 'help', desc: 'Display all terminal commands' },
+            { cmd: 'projects', desc: 'Lists all portfolio projects' },
+            { cmd: 'skills', desc: 'Prints developer core skills' },
+            { cmd: 'ssh', desc: 'Connects simulated secure shell session to homelab' },
+            { cmd: 'neofetch', desc: 'Draws system specifications and status logs' },
+            { cmd: 'contact', desc: 'Trigger email connect' },
+            { cmd: 'hosted', desc: 'Check hosting provider details' },
+            { cmd: 'clear', desc: 'Clear command console screen' }
+        ];
+
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                toggleCommandPalette();
+            }
+        });
+
+        cmdPalette.addEventListener('click', (e) => {
+            if (e.target === cmdPalette) toggleCommandPalette();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !cmdPalette.classList.contains('hidden')) {
+                toggleCommandPalette();
+            }
+        });
+
+        function toggleCommandPalette() {
+            cmdPalette.classList.toggle('hidden');
+            if (!cmdPalette.classList.contains('hidden')) {
+                cmdInput.value = '';
+                cmdInput.focus();
+                renderCommandResults('');
+            }
+        }
+
+        cmdInput.addEventListener('input', (e) => {
+            renderCommandResults(e.target.value);
+        });
+
+        cmdInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const active = cmdResults.querySelector('.active-cmd');
+                if (active) {
+                    executeCommand(active.dataset.command);
+                } else if (cmdInput.value.trim() !== '') {
+                    executeCommand(cmdInput.value.trim());
+                }
+            }
+        });
+
+        function renderCommandResults(query) {
+            cmdResults.innerHTML = '';
+            const filtered = commands.filter(c => 
+                c.cmd.includes(query.toLowerCase()) || c.desc.toLowerCase().includes(query.toLowerCase())
+            );
+            
+            if (filtered.length === 0) {
+                cmdResults.innerHTML = `<div class="p-2 text-zinc-600 font-mono">No matching commands found. Press Enter to run raw input.</div>`;
+                return;
+            }
+
+            filtered.forEach((c, index) => {
+                const div = document.createElement('div');
+                div.className = `p-2 hover:bg-zinc-800 rounded cursor-pointer transition-colors flex justify-between items-center ${index === 0 ? 'active-cmd bg-zinc-800/50' : ''}`;
+                div.dataset.command = c.cmd;
+                div.innerHTML = `
+                    <span class="text-zinc-100 font-mono font-bold">&gt; ${c.cmd}</span>
+                    <span class="text-zinc-500 font-sans text-xs">${c.desc}</span>
+                `;
+                div.onclick = () => executeCommand(c.cmd);
+                cmdResults.appendChild(div);
+            });
+        }
+
+        function executeCommand(cmdStr) {
+            toggleCommandPalette();
+            const termInput = document.getElementById('term-input');
+            termInput.value = cmdStr;
+            runTerminalCommand(cmdStr);
+        }
+
+        // Mobile Nav Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+            } else {
+                icon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+            }
+        }
+
+        // Project Detail Drawer slide action
+        function openProjectDrawer(projectId) {
+            const project = projectsData.find(p => p.id === projectId);
+            if (!project) return;
+
+            document.getElementById('drawer-name').innerText = project.name;
+            document.getElementById('drawer-subtitle').innerText = project.subtitle;
+            document.getElementById('drawer-problem').innerText = project.details.problem;
+            document.getElementById('drawer-goal').innerText = project.details.goal;
+            document.getElementById('drawer-architecture').innerText = project.details.architecture;
+            document.getElementById('drawer-decisions').innerText = project.details.decisions;
+            document.getElementById('drawer-challenges').innerText = project.details.challenges;
+            document.getElementById('drawer-results').innerText = project.details.results;
+            
+            // source repository
+            document.getElementById('drawer-github').href = project.github;
+            
+            // live deployment trigger
+            const demoBtn = document.getElementById('drawer-demo');
+            const fallbackSpan = document.getElementById('demo-fallback');
+            if (project.demo) {
+                demoBtn.href = project.demo;
+                demoBtn.classList.remove('hidden');
+                fallbackSpan.classList.add('hidden');
+            } else {
+                demoBtn.classList.add('hidden');
+                fallbackSpan.classList.remove('hidden');
+            }
+
+            // technology labels
+            const techContainer = document.getElementById('drawer-tech');
+            techContainer.innerHTML = '';
+            project.technologies.forEach(t => {
+                const span = document.createElement('span');
+                span.className = "text-xs font-mono bg-zinc-950 border border-zinc-800 px-2.5 py-1 rounded text-zinc-300 shadow-inner";
+                span.innerText = t;
+                techContainer.appendChild(span);
+            });
+
+            // pipeline drawing
+            const flowContainer = document.getElementById('drawer-pipeline-flow');
+            flowContainer.innerHTML = '';
+            project.pipeline.forEach((pStep, index) => {
+                const stepDiv = document.createElement('div');
+                stepDiv.className = "flex-1 min-w-[120px] bg-zinc-950 border border-zinc-850 p-2.5 rounded shadow space-y-1 relative";
+                stepDiv.innerHTML = `
+                    <div class="text-[9px] text-zinc-500 font-bold font-mono">0${index+1} / STEP</div>
+                    <div class="text-zinc-100 font-semibold">${pStep.name}</div>
+                    <div class="text-[9px] text-zinc-500 font-sans">${pStep.desc}</div>
+                `;
+                flowContainer.appendChild(stepDiv);
+                
+                if (index < project.pipeline.length - 1) {
+                    const arrow = document.createElement('div');
+                    arrow.className = "text-zinc-700 font-bold px-1 select-none flex items-center justify-center";
+                    arrow.innerHTML = "&rarr;";
+                    flowContainer.appendChild(arrow);
+                }
+            });
+
+            document.getElementById('project-drawer').classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeProjectDrawer() {
+            document.getElementById('project-drawer').classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        // Skills terminal reader console logic
+        function showSkillInfo(name, note) {
+            const consoleBox = document.getElementById('skill-console-output');
+            consoleBox.innerHTML = `
+                <p class="text-cyber-cyan font-bold font-mono">&gt; query_skill("${name}").info</p>
+                <p class="text-xs text-zinc-200 leading-relaxed font-sans">${note}</p>
+                <p class="text-[10px] text-zinc-600 font-mono mt-2">QUERY COMPLETE. RESPONSE_CODE: 200</p>
+            `;
+        }
+
+        function hideSkillInfo() {
+            // Keep the last active skill or show neutral
+        }
+
+        // Contact Submission Handler (Formsubmit.co Direct AJAX Submission)
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const formStatus = document.getElementById('form-status');
+            
+            formStatus.innerText = "SENDING_MESSAGE...";
+            formStatus.className = "text-[10px] text-cyber-cyan animate-pulse";
+            
+            // Serialize FormData to a standard JSON object
+            const formData = new FormData(form);
+            const object = {};
+            formData.forEach((value, key) => {
+                object[key] = value;
+            });
+            const json = JSON.stringify(object);
+            
+            fetch('https://formsubmit.co/ajax/anshumanmaurya776@gmail.com', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(res => res.json())
+            .then(data => {
+                // Formsubmit returns success: "true" (as a string or boolean)
+                if (data.success === "true" || data.success === true) {
+                    formStatus.innerText = "MESSAGE_SENT_SUCCESS";
+                    formStatus.className = "text-[10px] text-cyber-green";
+                    form.reset();
+                } else {
+                    formStatus.innerText = "SUBMIT_ERROR";
+                    formStatus.className = "text-[10px] text-red-500";
+                    console.error('Formsubmit Error:', data);
+                }
+            })
+            .catch(err => {
+                formStatus.innerText = "CONNECTION_FAILED";
+                formStatus.className = "text-[10px] text-red-500";
+                console.error(err);
+            });
+        }
+
+        // Floating Terminal Emulator Logic
+        const termInput = document.getElementById('term-input');
+        const termHistory = document.getElementById('term-history');
+        const termBody = document.getElementById('term-body');
+        let termCollapsed = false;
+
+        function toggleTerminalCollapse() {
+            const term = document.getElementById('footer-terminal');
+            const btn = document.getElementById('term-collapse-btn');
+            termCollapsed = !termCollapsed;
+            if (termCollapsed) {
+                term.style.height = '36px';
+                btn.innerText = '[Expand]';
+            } else {
+                term.style.height = 'auto';
+                btn.innerText = '[Collapse]';
+            }
+        }
+
+        termInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const cmd = termInput.value.trim();
+                termInput.value = '';
+                if (cmd !== '') {
+                    runTerminalCommand(cmd);
+                }
+            }
+        });
+
+        function runTerminalCommand(cmdText) {
+            const sanitized = cmdText.toLowerCase().trim();
+            let response = '';
+
+            // Print the input
+            const inputPara = document.createElement('p');
+            inputPara.innerHTML = `<span class="text-cyber-accent">&gt;</span> ${cmdText}`;
+            termHistory.appendChild(inputPara);
+
+            switch(sanitized) {
+                case 'help':
+                    response = 'Available CLI commands:<br>- <span class="text-cyber-cyan">projects</span>: list active pipeline projects<br>- <span class="text-cyber-cyan">skills</span>: display key technology proficiencies<br>- <span class="text-cyber-cyan">ssh</span>: establish simulated login to homelab VPS<br>- <span class="text-cyber-cyan">neofetch</span>: print system specs & information profile<br>- <span class="text-cyber-cyan">contact</span>: output email details<br>- <span class="text-cyber-cyan">hosted</span>: detail hosting structure<br>- <span class="text-cyber-cyan">clear</span>: wipe terminal logs';
+                    break;
+                case 'clear':
+                    termHistory.innerHTML = '';
+                    break;
+                case 'projects':
+                    response = 'Active Projects:<br>' + projectsData.map(p => `• <span class="text-zinc-200 font-bold">${p.name}</span> - ${p.subtitle}`).join('<br>');
+                    break;
+                case 'skills':
+                    response = 'Core languages: C, C++, Python, SQL.<br>Deep learning & ML: TensorFlow, Keras, XGBoost, Scikit-Learn.<br>AI/Agents: LangChain, LangGraph, RAG vector retrievals.';
+                    break;
+                case 'contact':
+                    response = 'Email: <a href="mailto:anshumanmaurya776@gmail.com" class="text-cyber-cyan underline">anshumanmaurya776@gmail.com</a><br>Phone: +91-8318463051<br>Loc: Ghaziabad, India';
+                    break;
+                case 'hosted':
+                    response = 'Deployment infrastructure details:<br>- Running on a repurposed Debian laptop server (Lenovo i3, 4GB RAM)<br>- Managed using Docker and reverse-proxy bindings<br>- Container deployment managed via Coolify repository hooks.';
+                    break;
+                case 'ssh':
+                    response = '<span class="text-cyber-cyan">Establishing secure SSH key handshake with homelab...</span><br>Status: CONNECTION ESTABLISHED.<br>Welcome to Anshuman\'s server console root. Active Docker daemons: 6. Enter "neofetch" to inspect stats.';
+                    break;
+                case 'neofetch':
+                    response = `<pre class="text-[10px] text-zinc-500 leading-tight">
+    /\\___/\\      OS: Debian GNU/Linux 12 (bookworm) x86_64
+   (  o.o  )     Host: Lenovo Laptop (Intel Core i3)
+    &gt; ^ &lt;      Kernel: 6.1.0-18-amd64
+   /     \\     Uptime: 24 days, 18 hours, 9 mins
+  /  ( )  \\    Shell: bash 5.2.15
+  (___)(___)   CPU: Intel Core i3 (2 cores) @ 2.40GHz
+               Memory: 1.94 GiB / 3.82 GiB (50%)
+               Docker Containers: 6 Active
+</pre>`;
+                    break;
+                default:
+                    response = `command not found: "${cmdText}". Type 'help' to check commands.`;
+            }
+
+            if (response !== '') {
+                const resPara = document.createElement('div');
+                resPara.innerHTML = response;
+                resPara.className = "text-[10px] text-zinc-500 pl-3 leading-relaxed border-l border-zinc-800 my-1";
+                termHistory.appendChild(resPara);
+            }
+
+            // Scroll to bottom
+            termBody.scrollTop = termBody.scrollHeight;
+        }
+
+        // Live dashboard fetch logic
+        let serverUptimeSeconds = 24 * 24 * 3600 + 18 * 3600 + 9 * 60 + 16;
+        let lastSyncTime = 0;
+
+        function updateLiveStats() {
+            fetch('/api/status')
+                .then(res => res.json())
+                .then(data => {
+                    const cpuPercent = document.getElementById('cpu-percent');
+                    const cpuBar = document.getElementById('cpu-bar');
+                    const ramPercent = document.getElementById('ram-percent');
+                    const ramBar = document.getElementById('ram-bar');
+                    const syncTimer = document.getElementById('sync-timer');
+                    
+                    if (cpuPercent) cpuPercent.innerText = `${data.cpu}%`;
+                    if (cpuBar) cpuBar.style.width = `${data.cpu}%`;
+                    if (ramPercent) ramPercent.innerText = `${data.memory}%`;
+                    if (ramBar) ramBar.style.width = `${data.memory}%`;
+                    
+                    serverUptimeSeconds = data.uptime_seconds;
+                    lastSyncTime = 0;
+                    if (syncTimer) syncTimer.innerText = `Refreshed: 0s ago`;
+                })
+                .catch(err => {
+                    console.log('Unable to sync live status API', err);
+                });
+        }
+
+        // Setup ticking counter
+        setInterval(() => {
+            serverUptimeSeconds++;
+            lastSyncTime++;
+            
+            // Format uptime
+            const days = Math.floor(serverUptimeSeconds / (24 * 3600));
+            let rem = serverUptimeSeconds % (24 * 3600);
+            const hours = Math.floor(rem / 3600);
+            rem %= 3600;
+            const minutes = Math.floor(rem / 60);
+            const seconds = rem % 60;
+            
+            const uptimeCounter = document.getElementById('uptime-counter');
+            if (uptimeCounter) {
+                uptimeCounter.innerText = `${days}d ${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`;
+            }
+            
+            const syncTimer = document.getElementById('sync-timer');
+            if (syncTimer) {
+                syncTimer.innerText = `Refreshed: ${lastSyncTime}s ago`;
+            }
+        }, 1000);
+
+        // Fetch updates every 30 seconds
+        setInterval(updateLiveStats, 30000);
+        
+        // Initial call
+        updateLiveStats();
+    </script>
+</body>
+</html>
