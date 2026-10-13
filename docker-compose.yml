@@ -14,6 +14,8 @@ services:
       - PORT=8000
       - ALLOWED_HOSTS=localhost,127.0.0.1,anshumanmaurya.in,vstra.anshumanmaurya.in,admin.anshumanmaurya.in
       - WEB3FORMS_KEY=${WEB3FORMS_KEY:-}
+      - SITE_URL=${SITE_URL:-https://anshumanmaurya.in}
+      - GA_MEASUREMENT_ID=${GA_MEASUREMENT_ID:-}
     volumes:
       - ./templates:/app/templates:ro
       - ./static:/app/static:ro

@@ -9,7 +9,8 @@ import logging
 import urllib.request
 import xml.etree.ElementTree as ET
 from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse, JSONResponse, FileResponse
+from datetime import datetime, timezone
+from fastapi.responses import HTMLResponse, JSONResponse, FileResponse, PlainTextResponse, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
@@ -46,6 +47,10 @@ DEBUG = os.getenv("DEBUG", "false").lower() == "true"
 ALLOWED_HOSTS_RAW = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1,anshumanmaurya.in,*.anshumanmaurya.in,testserver")
 ALLOWED_HOSTS = [h.strip() for h in ALLOWED_HOSTS_RAW.split(",") if h.strip()]
 WEB3FORMS_KEY = os.getenv("WEB3FORMS_KEY", "")
+# SEO / analytics settings
+SITE_URL = os.getenv("SITE_URL", "https://anshumanmaurya.in").rstrip("/")
+GA_MEASUREMENT_ID = os.getenv("GA_MEASUREMENT_ID", "").strip()  # e.g. G-XXXXXXXXXX; analytics is off when empty
+GOOGLE_VERIFICATION_FILE = "googlebf59c4957ddea731.html"
 
 app = FastAPI(
     title=f"{PERSONAL_INFO['name']} Portfolio",
@@ -183,7 +188,9 @@ async def read_index(request: Request):
                 "focus_areas": FOCUS_AREAS,
                 "skills": SKILLS,
                 "youtube_videos": get_latest_youtube_videos(),
-                "web3forms_key": WEB3FORMS_KEY
+                "web3forms_key": WEB3FORMS_KEY,
+                "site_url": SITE_URL,
+                "ga_measurement_id": GA_MEASUREMENT_ID
             }
         )
     except Exception as e:
@@ -223,6 +230,40 @@ async def get_status():
     except Exception as e:
         logger.error(f"Error retrieving status: {e}")
         return JSONResponse({"status": "error", "message": "Failed to retrieve status"}, status_code=500)
+
+@app.get(f"/{GOOGLE_VERIFICATION_FILE}", include_in_schema=False)
+async def google_site_verification():
+    """Google Search Console ownership verification file (must stay at the site root)"""
+    return FileResponse(f"static/seo/{GOOGLE_VERIFICATION_FILE}", media_type="text/html")
+
+@app.get("/robots.txt", response_class=PlainTextResponse, include_in_schema=False)
+async def robots_txt():
+    """Allow crawling of the site and point crawlers at the sitemap"""
+    lines = [
+        "User-agent: *",
+        "Allow: /",
+        "Disallow: /api/",
+        "",
+        f"Sitemap: {SITE_URL}/sitemap.xml",
+    ]
+    return "\n".join(lines) + "\n"
+
+@app.get("/sitemap.xml", include_in_schema=False)
+async def sitemap_xml():
+    """XML sitemap for search engines"""
+    try:
+        lastmod = datetime.fromtimestamp(os.path.getmtime("templates/index.html"), tz=timezone.utc).date().isoformat()
+    except OSError:
+        lastmod = datetime.now(timezone.utc).date().isoformat()
+    lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+        f"  <url><loc>{SITE_URL}/</loc><lastmod>{lastmod}</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>",
+        f"  <url><loc>{SITE_URL}/static/Anshuman_resume.pdf</loc><lastmod>{lastmod}</lastmod><priority>0.6</priority></url>",
+        "</urlset>",
+    ]
+    xml = "\n".join(lines) + "\n"
+    return Response(content=xml, media_type="application/xml")
 
 @app.get("/health", response_class=JSONResponse, include_in_schema=False)
 async def health_check():
