@@ -9,7 +9,6 @@ import logging
 import urllib.request
 import xml.etree.ElementTree as ET
 from fastapi import FastAPI, Request
-from datetime import datetime, timezone
 from fastapi.responses import HTMLResponse, JSONResponse, FileResponse, PlainTextResponse, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -51,6 +50,8 @@ WEB3FORMS_KEY = os.getenv("WEB3FORMS_KEY", "")
 SITE_URL = os.getenv("SITE_URL", "https://anshumanmaurya.in").rstrip("/")
 GA_MEASUREMENT_ID = os.getenv("GA_MEASUREMENT_ID", "").strip()  # e.g. G-XXXXXXXXXX; analytics is off when empty
 GOOGLE_VERIFICATION_FILE = "googlebf59c4957ddea731.html"
+# Date shown as <lastmod> in sitemap.xml; update it when the site content changes
+SITE_LAST_MODIFIED = os.getenv("SITE_LAST_MODIFIED", "2026-10-13")
 
 app = FastAPI(
     title=f"{PERSONAL_INFO['name']} Portfolio",
@@ -251,10 +252,8 @@ async def robots_txt():
 @app.get("/sitemap.xml", include_in_schema=False)
 async def sitemap_xml():
     """XML sitemap for search engines"""
-    try:
-        lastmod = datetime.fromtimestamp(os.path.getmtime("templates/index.html"), tz=timezone.utc).date().isoformat()
-    except OSError:
-        lastmod = datetime.now(timezone.utc).date().isoformat()
+    # File timestamps are reset during container builds, so use an explicit date instead
+    lastmod = SITE_LAST_MODIFIED
     lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
