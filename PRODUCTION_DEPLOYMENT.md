@@ -20,8 +20,29 @@ This guide provides step-by-step instructions for deploying Anshuman Maurya's po
 ├── nginx.conf                 # Nginx reverse proxy config
 ├── .env                       # Environment variables (create from .env.example)
 ├── .env.example               # Example environment configuration
+├── tailwind.config.js         # Tailwind theme (colors, fonts) used to build site.css
 ├── templates/                 # HTML templates
 └── static/                    # CSS, JS, images
+    └── css/site.css           # Precompiled Tailwind stylesheet (committed)
+```
+
+## Styles (Tailwind CSS)
+
+The site uses a precompiled Tailwind stylesheet, so the server does not need Node.js.
+If you change Tailwind classes in `templates/` or `data.py`, rebuild and commit `static/css/site.css`:
+
+```bash
+npx tailwindcss@3.4.17 -i ./static/css/input.css -o ./static/css/site.css --minify
+```
+
+Then bump the `?v=` query on the stylesheet link in `templates/index.html` so browsers fetch the new file.
+
+## Local Development
+
+```bash
+python -m venv .venv
+.venv/Scripts/pip install -r requirements.txt      # Windows (use .venv/bin/pip on Linux/macOS)
+.venv/Scripts/python -m uvicorn main:app --reload --port 8000
 ```
 
 ## Deployment Steps

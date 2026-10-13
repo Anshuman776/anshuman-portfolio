@@ -3,7 +3,7 @@
 
 PERSONAL_INFO = {
     "name": "Anshuman Maurya",
-    "title": "Software Engineer · AI · Cloud · Infrastructure",
+    "title": "Software Engineer · Machine Learning · AI · Cloud",
     "location": "Ghaziabad, India",
     "email": "anshumanmaurya776@gmail.com",
     "phone": "+91-8318463051",
@@ -307,6 +307,24 @@ PUBLISHED_APPLICATIONS = [
     }
 ]
 
+FOCUS_AREAS = [
+    {
+        "name": "Machine Learning",
+        "description": "Classification and regression with Scikit-Learn and XGBoost, deep learning with TensorFlow and Keras, and model explainability with SHAP.",
+        "tools": ["Scikit-Learn", "XGBoost", "TensorFlow", "SHAP"]
+    },
+    {
+        "name": "AI & Generative AI",
+        "description": "LLM applications with LangChain and LangGraph, RAG systems grounded in SQL and vector databases, and the OpenAI and Gemini APIs.",
+        "tools": ["LangChain", "LangGraph", "RAG", "OpenAI / Gemini"]
+    },
+    {
+        "name": "Cloud & Infrastructure",
+        "description": "Containerized deployments with Docker on Linux servers, Coolify and Cloudflare Tunnel for self-hosting, and apps on Streamlit Cloud and Railway.",
+        "tools": ["Docker", "Linux", "Coolify", "Cloudflare"]
+    }
+]
+
 CURRENTLY_BUILDING = [
     {
         "title": "PathoWatch — Real-Time Monitoring of MDR Pathogen Spread",
@@ -333,7 +351,7 @@ SKILLS = {
         {"name": "C++", "note": "Used for Object Oriented Programming (OOP) and solving core Data Structures and Algorithms."},
         {"name": "C", "note": "Learned computer engineering fundamentals, memory management, and pointers."}
     ],
-    "ML / DL": [
+    "Machine Learning & Deep Learning": [
         {"name": "Scikit-Learn", "note": "Utilized for basic regression, classification, pipelines, scaling, and evaluations."},
         {"name": "XGBoost", "note": "Used as the primary tabular predictor in the Superstore Retail project due to high accuracy."},
         {"name": "TensorFlow", "note": "Used for building and tuning Artificial Neural Network and convolutional layers."},
@@ -344,14 +362,14 @@ SKILLS = {
         {"name": "NumPy", "note": "Used for vector mathematics, matrix manipulations, and custom model layers."},
         {"name": "Matplotlib", "note": "Data visualization, EDA plot distributions, and analysis reports."}
     ],
-    "GenAI / LLM": [
+    "Generative AI & LLMs": [
         {"name": "LangChain", "note": "Built prompt templates, LLM chains, and SQLDatabaseChains for connecting bots to databases."},
         {"name": "LangGraph", "note": "Explored stateful multi-agent workflows, cycles, and deterministic routing agents."},
         {"name": "RAG", "note": "Designed context-grounded retrieval systems, vector matching, and custom search filters."},
         {"name": "OpenAI API", "note": "Integrated GPT-3.5 and GPT-4o-mini models for embeddings and role-based responses."},
         {"name": "Gemini API", "note": "Integrated Google Gemini model as an AI Strategy Co-Pilot inside retail dashboard."}
     ],
-    "Data Engg": [
+    "Data Engineering": [
         {"name": "ETL", "note": "Structured data import, parsing, cleaning, and export pipelines for database optimization."},
         {"name": "SHAP", "note": "Utilized Shapley values to explain machine learning predictions to non-technical users."},
         {"name": "CTGAN (SDV)", "note": "Trained Conditional GAN models to generate 30,000+ synthetic retail transactions."}
@@ -366,6 +384,13 @@ SKILLS = {
         {"name": "Docker", "note": "Exploring application containerization, volume mapping, port binding, and hosting."},
         {"name": "Git", "note": "Version control, branching, merge conflict resolution, and workspace management."},
         {"name": "GitHub", "note": "Repository hosting, actions pipelines, issues, and open-source contributions."}
+    ],
+    "Cloud & Infrastructure": [
+        {"name": "Linux", "note": "Run a Debian server at home that hosts this portfolio and my other applications."},
+        {"name": "Coolify", "note": "Self-hosted deployment platform I use for containerized deployments, reverse proxy routing, and SSL."},
+        {"name": "Cloudflare Tunnel", "note": "Routes each of my domains securely to the right backend service, with HTTPS and DDoS protection."},
+        {"name": "Streamlit Cloud", "note": "Hosts the live demos of my Superstore Intelligence and SQL Q&A projects."},
+        {"name": "Railway", "note": "Cloud-hosted MySQL database behind the AI-powered SQL Q&A project."}
     ]
 }
 

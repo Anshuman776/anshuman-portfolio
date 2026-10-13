@@ -6,48 +6,26 @@
     <title>{{ personal_info.name }} — {{ personal_info.title }}</title>
     
     <!-- SEO & Metadata -->
-    <meta name="description" content="AI/ML Engineer, Data Scientist and Builder portfolio of Anshuman Maurya. Exploring Generative AI, MLOps, and self-hosted infrastructure.">
-    <meta name="keywords" content="Anshuman Maurya, AI Engineer, ML Engineer, Data Scientist, MLOps, LangChain, RAG, Self-hosted, Docker, Streamlit">
+    <meta name="description" content="Portfolio of Anshuman Maurya, a software engineer working across Machine Learning, AI, and Cloud. Projects in ML, Generative AI, MLOps, and self-hosted infrastructure.">
+    <meta name="keywords" content="Anshuman Maurya, Machine Learning, AI Engineer, ML Engineer, Cloud, Data Scientist, MLOps, LangChain, RAG, Self-hosted, Docker, Streamlit">
     
     <!-- Open Graph / Social Sharing -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Anshuman Maurya — AI/ML Engineer & Builder">
-    <meta property="og:description" content="Exploring AI systems from model training to production-grade self-hosted infrastructure.">
-    <meta property="og:image" content="/static/og-image.png">
+    <meta property="og:title" content="Anshuman Maurya — Machine Learning, AI &amp; Cloud">
+    <meta property="og:description" content="Building machine learning and AI systems, and the cloud infrastructure that runs them.">
+    <meta property="og:image" content="https://anshumanmaurya.in/static/og-image.png">
+    <meta property="og:url" content="https://anshumanmaurya.in/">
+    <meta name="twitter:card" content="summary">
+    <meta name="theme-color" content="#0b1017">
+    <link rel="canonical" href="https://anshumanmaurya.in/">
     <link rel="icon" type="image/jpeg" href="/static/anshuman.jpg">
     
-    <!-- Tailwind CSS & Fonts -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
-                    },
-                    colors: {
-                        cyber: {
-                            bg: '#09090b', // Zinc 950
-                            panel: '#18181b', // Zinc 900
-                            border: '#27272a', // Zinc 800
-                            accent: '#3b82f6', // Electric Blue
-                            accentGlow: 'rgba(59, 130, 246, 0.15)',
-                            cyan: '#06b6d4', // Teal/Cyan
-                            cyanGlow: 'rgba(6, 182, 212, 0.15)',
-                            green: '#10b981', // Emerald
-                        }
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    }
-                }
-            }
-        }
-    </script>
-    
+    <!-- Fonts & compiled Tailwind CSS (rebuild: see tailwind.config.js) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/site.css?v=2.0.0">
+
     <style>
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
@@ -55,33 +33,33 @@
             height: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #09090b;
+            background: #0b1017;
         }
         ::-webkit-scrollbar-thumb {
-            background: #27272a;
+            background: #232e3c;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #3f3f46;
+            background: #364252;
         }
         
         /* Grid Overlay Background */
         .cyber-grid {
             background-size: 4rem 4rem;
             background-image: 
-                linear-gradient(to right, rgba(63, 63, 70, 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(63, 63, 70, 0.05) 1px, transparent 1px);
+                linear-gradient(to right, rgba(54, 66, 82, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(54, 66, 82, 0.05) 1px, transparent 1px);
         }
         
         /* Glassmorphism Panel */
         .glass-panel {
-            background: rgba(24, 24, 27, 0.8);
+            background: rgba(21, 28, 39, 0.8);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(63, 63, 70, 0.4);
+            border: 1px solid rgba(54, 66, 82, 0.4);
         }
         
         .glass-panel-glow {
-            box-shadow: 0 0 25px rgba(59, 130, 246, 0.05);
+            box-shadow: 0 0 25px rgba(45, 212, 191, 0.05);
         }
 
         /* Scanning Line Effect on Photo */
@@ -99,12 +77,12 @@
         .scanline-line {
             width: 100%;
             height: 4px;
-            background: rgba(6, 182, 212, 0.3);
+            background: rgba(125, 211, 252, 0.3);
             position: absolute;
             animation: scan 6s linear infinite;
             z-index: 10;
             pointer-events: none;
-            box-shadow: 0 0 8px rgba(6, 182, 212, 0.8);
+            box-shadow: 0 0 8px rgba(125, 211, 252, 0.8);
         }
         
         @keyframes scan {
@@ -115,15 +93,61 @@
         
         /* Active Timeline Dot pulse */
         .active-dot-glow {
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+            box-shadow: 0 0 10px rgba(45, 212, 191, 0.8);
+        }
+
+        /* Base polish */
+        body {
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        :focus-visible {
+            outline: 2px solid #2dd4bf;
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        /* Navigation active state (set by scroll spy) */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link.is-active {
+            color: #eef1f5;
+        }
+        .nav-link.is-active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -6px;
+            height: 2px;
+            border-radius: 2px;
+            background: #2dd4bf;
+        }
+
+        /* Shared section heading style */
+        .section-eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            color: #2dd4bf;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
-<body class="bg-cyber-bg text-zinc-300 font-sans min-h-screen selection:bg-cyber-accent selection:text-white relative overflow-x-hidden cyber-grid">
+<body class="bg-cyber-bg text-zinc-300 font-sans min-h-screen selection:bg-cyber-accent selection:text-zinc-950 relative overflow-x-hidden cyber-grid">
 
-    <!-- Top Glow Effect -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] bg-cyber-accentGlow blur-[120px] rounded-full pointer-events-none -z-10"></div>
-    <div class="absolute top-1/3 right-10 w-[300px] h-[300px] bg-cyber-cyanGlow blur-[100px] rounded-full pointer-events-none -z-10"></div>
+    <!-- Top Glow Effect (kept very subtle) -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[320px] bg-cyber-accentGlow opacity-50 blur-[120px] rounded-full pointer-events-none -z-10"></div>
 
     <!-- COMMAND PALETTE (MODAL) -->
     <div id="command-palette" class="fixed inset-0 bg-zinc-950/80 backdrop-blur-sm z-50 hidden flex items-start justify-center pt-24 px-4">
@@ -146,76 +170,74 @@
     <!-- MAIN HEADER NAVIGATION -->
     <header class="sticky top-0 z-40 w-full border-b border-zinc-800/80 bg-cyber-bg/70 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
-            <a href="#" class="flex items-center space-x-3 group">
-                <div class="relative w-8 h-8 rounded border border-cyber-accent/30 flex items-center justify-center bg-zinc-900 overflow-hidden font-mono font-bold text-cyber-accent group-hover:border-cyber-accent transition-all duration-300">
+            <a href="#home" class="flex items-center space-x-3 group" aria-label="Anshuman Maurya — back to top">
+                <div class="relative w-8 h-8 rounded-md border border-zinc-700 flex items-center justify-center bg-zinc-900 overflow-hidden font-mono text-xs font-bold text-zinc-100 group-hover:border-cyber-accent transition-colors duration-200">
                     AM
                 </div>
-                <div>
-                    <span class="text-zinc-100 font-bold tracking-tight font-mono text-sm">ANSHUMAN.SYS</span>
-                    <div class="flex items-center space-x-1.5 mt-0.5">
-                        <span class="w-1.5 h-1.5 rounded-full bg-cyber-green animate-pulse"></span>
-                        <span class="text-[10px] text-zinc-500 font-mono tracking-widest uppercase">Hosted on My Server</span>
-                    </div>
-                </div>
+                <span class="text-zinc-100 font-semibold tracking-tight text-sm">Anshuman Maurya</span>
             </a>
-            
+
             <!-- Desktop Links -->
-            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
-                <a href="#home" class="text-zinc-400 hover:text-zinc-100 transition-colors">Home</a>
-                <a href="#journey" class="text-zinc-400 hover:text-zinc-100 transition-colors">Journey</a>
-                <a href="#projects" class="text-zinc-400 hover:text-zinc-100 transition-colors">Projects</a>
-                <a href="#lab" class="text-zinc-400 hover:text-zinc-100 transition-colors">Lab</a>
-                <a href="#infrastructure" class="text-zinc-400 hover:text-zinc-100 transition-colors">Infra</a>
-                <a href="#build-log" class="text-zinc-400 hover:text-zinc-100 transition-colors">Build Log</a>
-                <a href="#now" class="text-zinc-400 hover:text-zinc-100 transition-colors">Now</a>
-                <a href="#contact" class="text-zinc-400 hover:text-zinc-100 transition-colors">Contact</a>
-                <a href="/static/Anshuman_resume.pdf" download="Anshuman_Maurya_Resume.pdf" class="text-cyber-accent hover:text-blue-400 font-mono text-xs transition-colors flex items-center space-x-1">[resume.pdf]</a>
+            <nav class="hidden xl:flex items-center gap-6 text-sm" aria-label="Primary">
+                <a href="#about" class="nav-link text-zinc-400 hover:text-zinc-100 transition-colors">About</a>
+                <a href="#projects" class="nav-link text-zinc-400 hover:text-zinc-100 transition-colors">Projects</a>
+                <a href="#journey" class="nav-link text-zinc-400 hover:text-zinc-100 transition-colors">Journey</a>
+                <a href="#lab" class="nav-link text-zinc-400 hover:text-zinc-100 transition-colors">Lab</a>
+                <a href="#infrastructure" class="nav-link text-zinc-400 hover:text-zinc-100 transition-colors">Infra</a>
+                <a href="#skills" class="nav-link text-zinc-400 hover:text-zinc-100 transition-colors">Skills</a>
+                <a href="#build-log" class="nav-link text-zinc-400 hover:text-zinc-100 transition-colors">Build Log</a>
+                <a href="#now" class="nav-link text-zinc-400 hover:text-zinc-100 transition-colors">Now</a>
+                <a href="#contact" class="nav-link text-zinc-400 hover:text-zinc-100 transition-colors">Contact</a>
             </nav>
-            
+
             <!-- Search & Actions -->
-            <div class="flex items-center space-x-3">
-                <button onclick="toggleCommandPalette()" class="flex items-center space-x-2 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-700 px-3 py-1.5 rounded-md font-mono text-xs text-zinc-400 transition-all">
-                    <span>Search</span>
-                    <kbd class="bg-zinc-950 border border-zinc-700 px-1.5 py-0.5 rounded text-[10px] uppercase font-sans">Ctrl+K</kbd>
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button onclick="toggleCommandPalette()" class="flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-700 px-2.5 py-1.5 rounded-md text-xs text-zinc-400 transition-colors" aria-label="Open command palette">
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="m20 20-3.5-3.5"/></svg>
+                    <kbd class="hidden sm:inline bg-zinc-950 border border-zinc-700 px-1.5 py-0.5 rounded text-[10px] font-sans">Ctrl K</kbd>
                 </button>
-                <a href="#contact" class="hidden sm:inline-flex bg-cyber-accent hover:bg-blue-600 text-white text-xs font-mono font-medium px-4 py-2 rounded border border-blue-400/20 shadow-md shadow-blue-500/10 hover:shadow-blue-500/20 active:translate-y-0.5 transition-all">
-                    connect_session()
+                <a href="/static/Anshuman_resume.pdf" download="Anshuman_Maurya_Resume.pdf" class="hidden sm:inline-flex items-center bg-cyber-accent hover:bg-cyber-accentHover text-zinc-950 text-xs font-medium px-3.5 py-2 rounded-md transition-colors">
+                    Résumé
                 </a>
-                
+
                 <!-- Mobile menu button -->
-                <button onclick="toggleMobileMenu()" class="md:hidden text-zinc-400 hover:text-zinc-100 focus:outline-none">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <button onclick="toggleMobileMenu()" class="xl:hidden p-1.5 -mr-1.5 text-zinc-400 hover:text-zinc-100 rounded-md" aria-label="Toggle navigation menu" aria-controls="mobile-menu" aria-expanded="false" id="menu-button">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                     </svg>
                 </button>
             </div>
         </div>
-        
+
         <!-- Mobile Dropdown Menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-b border-zinc-800 bg-zinc-950/95 px-4 pt-2 pb-4 space-y-2 text-sm font-medium">
-            <a href="#home" onclick="toggleMobileMenu()" class="block py-2 text-zinc-400 hover:text-zinc-100">Home</a>
-            <a href="#journey" onclick="toggleMobileMenu()" class="block py-2 text-zinc-400 hover:text-zinc-100">Journey</a>
-            <a href="#projects" onclick="toggleMobileMenu()" class="block py-2 text-zinc-400 hover:text-zinc-100">Projects</a>
-            <a href="#lab" onclick="toggleMobileMenu()" class="block py-2 text-zinc-400 hover:text-zinc-100">Lab</a>
-            <a href="#infrastructure" onclick="toggleMobileMenu()" class="block py-2 text-zinc-400 hover:text-zinc-100">Infrastructure</a>
-            <a href="#build-log" onclick="toggleMobileMenu()" class="block py-2 text-zinc-400 hover:text-zinc-100">Build Log</a>
-            <a href="#now" onclick="toggleMobileMenu()" class="block py-2 text-zinc-400 hover:text-zinc-100">Currently Building</a>
-            <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-zinc-400 hover:text-zinc-100">Contact</a>
-            <a href="/static/Anshuman_resume.pdf" download="Anshuman_Maurya_Resume.pdf" onclick="toggleMobileMenu()" class="block py-2 text-cyber-accent font-mono">[resume.pdf]</a>
+        <div id="mobile-menu" class="hidden xl:hidden border-t border-zinc-800 bg-zinc-950 px-4 md:px-8 py-3 text-sm">
+            <nav class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 gap-x-6" aria-label="Mobile">
+                <a href="#home" onclick="toggleMobileMenu()" class="block py-2.5 text-zinc-400 hover:text-zinc-100">Home</a>
+                <a href="#about" onclick="toggleMobileMenu()" class="block py-2.5 text-zinc-400 hover:text-zinc-100">About</a>
+                <a href="#projects" onclick="toggleMobileMenu()" class="block py-2.5 text-zinc-400 hover:text-zinc-100">Projects</a>
+                <a href="#journey" onclick="toggleMobileMenu()" class="block py-2.5 text-zinc-400 hover:text-zinc-100">Journey</a>
+                <a href="#lab" onclick="toggleMobileMenu()" class="block py-2.5 text-zinc-400 hover:text-zinc-100">Lab</a>
+                <a href="#infrastructure" onclick="toggleMobileMenu()" class="block py-2.5 text-zinc-400 hover:text-zinc-100">Infrastructure</a>
+                <a href="#skills" onclick="toggleMobileMenu()" class="block py-2.5 text-zinc-400 hover:text-zinc-100">Skills</a>
+                <a href="#build-log" onclick="toggleMobileMenu()" class="block py-2.5 text-zinc-400 hover:text-zinc-100">Build Log</a>
+                <a href="#now" onclick="toggleMobileMenu()" class="block py-2.5 text-zinc-400 hover:text-zinc-100">Currently Building</a>
+                <a href="#contact" onclick="toggleMobileMenu()" class="block py-2.5 text-zinc-400 hover:text-zinc-100">Contact</a>
+                <a href="/static/Anshuman_resume.pdf" download="Anshuman_Maurya_Resume.pdf" onclick="toggleMobileMenu()" class="block py-2.5 text-cyber-accent">Download résumé</a>
+            </nav>
         </div>
     </header>
 
     <!-- PROJECT DETAIL DRAWER (SLIDE OUT OVERLAY) -->
-    <div id="project-drawer" class="fixed inset-0 z-50 hidden">
+    <div id="project-drawer" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true" aria-labelledby="drawer-name">
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeProjectDrawer()"></div>
         <div class="absolute top-0 right-0 h-full w-full max-w-3xl bg-zinc-900 border-l border-zinc-800 overflow-y-auto shadow-2xl flex flex-col">
             <!-- Header -->
             <div class="sticky top-0 bg-zinc-900 border-b border-zinc-800 px-6 py-4 flex items-center justify-between z-10">
                 <div>
-                    <span class="text-[10px] text-cyber-accent font-mono font-semibold uppercase tracking-widest" id="drawer-subtitle">PROJECT PIPELINE</span>
-                    <h2 class="text-xl font-extrabold text-zinc-100" id="drawer-name">Project Details</h2>
+                    <span class="text-xs text-cyber-accent font-mono" id="drawer-subtitle">Project</span>
+                    <h2 class="text-lg sm:text-xl font-bold tracking-tight text-zinc-100" id="drawer-name">Project Details</h2>
                 </div>
-                <button onclick="closeProjectDrawer()" class="text-zinc-400 hover:text-zinc-100 p-2 rounded-lg border border-zinc-800 bg-zinc-950/50 hover:bg-zinc-800 transition-all">
+                <button onclick="closeProjectDrawer()" aria-label="Close project details" class="shrink-0 ml-4 text-zinc-400 hover:text-zinc-100 p-2 rounded-lg border border-zinc-800 bg-zinc-950/50 hover:bg-zinc-800 transition-all">
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -226,23 +248,23 @@
             <div class="p-6 md:p-8 space-y-8 flex-1">
                 <!-- Direct Links -->
                 <div class="flex flex-wrap gap-3">
-                    <a id="drawer-github" href="#" target="_blank" class="inline-flex items-center space-x-2 bg-zinc-950 border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900 px-4 py-2 rounded text-xs font-mono text-zinc-300 transition-all">
+                    <a id="drawer-github" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 bg-zinc-950 border border-zinc-800 hover:border-zinc-600 hover:bg-zinc-900 px-4 py-2 rounded-md text-sm text-zinc-200 transition-colors">
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-                        <span>source_code_repo</span>
+                        <span id="drawer-github-label">View source</span>
                     </a>
-                    <a id="drawer-demo" href="#" target="_blank" class="inline-flex items-center space-x-2 bg-cyber-accent/15 border border-cyber-accent/30 hover:border-cyber-accent hover:bg-cyber-accent/35 px-4 py-2 rounded text-xs font-mono text-cyber-accent transition-all">
+                    <a id="drawer-demo" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 bg-cyber-accent hover:bg-cyber-accentHover border border-transparent px-4 py-2 rounded-md text-sm font-medium text-zinc-950 transition-colors">
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                        <span>launch_live_deployment</span>
+                        <span>Open live demo</span>
                     </a>
-                    <span id="demo-fallback" class="hidden inline-flex items-center space-x-2 bg-zinc-950 border border-zinc-800 px-4 py-2 rounded text-xs font-mono text-zinc-500">
+                    <span id="demo-fallback" class="hidden inline-flex items-center space-x-2 bg-zinc-950 border border-zinc-800 px-4 py-2 rounded-md text-sm text-zinc-500">
                         <span class="w-1.5 h-1.5 rounded-full bg-zinc-600"></span>
-                        <span>local_deployment_only</span>
+                        <span>No public demo — runs locally</span>
                     </span>
                 </div>
 
                 <!-- Technologies -->
                 <div>
-                    <h3 class="text-xs font-mono text-zinc-500 uppercase tracking-widest mb-3">ENGINEERING COMPILER</h3>
+                    <h3 class="text-xs font-mono text-zinc-500 uppercase tracking-wider mb-3">Tech stack</h3>
                     <div class="flex flex-wrap gap-2" id="drawer-tech">
                         <!-- Badges populate dynamically -->
                     </div>
@@ -251,26 +273,26 @@
                 <div class="border-t border-zinc-800/80 pt-6 space-y-6">
                     <!-- Problem & Goal -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-zinc-950/40 p-4 rounded border border-zinc-800/50">
-                            <h4 class="text-sm font-bold text-zinc-100 flex items-center mb-2">
+                        <div class="bg-zinc-950/40 p-4 rounded-md border border-zinc-800/70">
+                            <h4 class="text-sm font-semibold text-zinc-100 flex items-center mb-2">
                                 <span class="w-1.5 h-1.5 rounded-full bg-red-500 mr-2"></span>
-                                PROBLEM STATEMENT
+                                Problem
                             </h4>
-                            <p class="text-xs text-zinc-400 leading-relaxed font-sans" id="drawer-problem"></p>
+                            <p class="text-sm text-zinc-400 leading-relaxed font-sans" id="drawer-problem"></p>
                         </div>
-                        <div class="bg-zinc-950/40 p-4 rounded border border-zinc-800/50">
-                            <h4 class="text-sm font-bold text-zinc-100 flex items-center mb-2">
+                        <div class="bg-zinc-950/40 p-4 rounded-md border border-zinc-800/70">
+                            <h4 class="text-sm font-semibold text-zinc-100 flex items-center mb-2">
                                 <span class="w-1.5 h-1.5 rounded-full bg-cyber-green mr-2"></span>
-                                DESIGN GOAL
+                                Goal
                             </h4>
-                            <p class="text-xs text-zinc-400 leading-relaxed font-sans" id="drawer-goal"></p>
+                            <p class="text-sm text-zinc-400 leading-relaxed font-sans" id="drawer-goal"></p>
                         </div>
                     </div>
 
                     <!-- Flow Diagram (Interactive Pipeline) -->
                     <div>
-                        <h4 class="text-sm font-bold text-zinc-100 mb-3 flex items-center font-mono">
-                            <span class="text-cyber-cyan mr-1.5">&gt;</span> SYSTEM_DATA_PIPELINE.sh
+                        <h4 class="text-sm font-semibold text-zinc-100 mb-3">
+                            How it works
                         </h4>
                         <div class="bg-zinc-950 p-4 rounded border border-zinc-800 overflow-x-auto flex items-center space-x-3 py-6 min-w-full font-mono text-[10px] text-center" id="drawer-pipeline-flow">
                             <!-- Populated in Javascript -->
@@ -279,26 +301,26 @@
 
                     <!-- Architectural Overview -->
                     <div>
-                        <h4 class="text-sm font-bold text-zinc-100 mb-2">System Architecture</h4>
-                        <p class="text-xs text-zinc-400 leading-relaxed font-sans" id="drawer-architecture"></p>
+                        <h4 class="text-sm font-semibold text-zinc-100 mb-2">System Architecture</h4>
+                        <p class="text-sm text-zinc-400 leading-relaxed font-sans" id="drawer-architecture"></p>
                     </div>
 
                     <!-- Engineering Decisions -->
                     <div>
-                        <h4 class="text-sm font-bold text-zinc-100 mb-2">Engineering Decisions</h4>
-                        <p class="text-xs text-zinc-400 leading-relaxed font-sans" id="drawer-decisions"></p>
+                        <h4 class="text-sm font-semibold text-zinc-100 mb-2">Engineering Decisions</h4>
+                        <p class="text-sm text-zinc-400 leading-relaxed font-sans" id="drawer-decisions"></p>
                     </div>
 
                     <!-- Challenges & Optimization -->
                     <div>
-                        <h4 class="text-sm font-bold text-zinc-100 mb-2">Development Challenges</h4>
-                        <p class="text-xs text-zinc-400 leading-relaxed font-sans" id="drawer-challenges"></p>
+                        <h4 class="text-sm font-semibold text-zinc-100 mb-2">Development Challenges</h4>
+                        <p class="text-sm text-zinc-400 leading-relaxed font-sans" id="drawer-challenges"></p>
                     </div>
 
                     <!-- Results & Metrics -->
                     <div>
-                        <h4 class="text-sm font-bold text-zinc-100 mb-2">Results & Capabilities</h4>
-                        <p class="text-xs text-zinc-400 leading-relaxed font-sans" id="drawer-results"></p>
+                        <h4 class="text-sm font-semibold text-zinc-100 mb-2">Results & Capabilities</h4>
+                        <p class="text-sm text-zinc-400 leading-relaxed font-sans" id="drawer-results"></p>
                     </div>
                 </div>
             </div>
@@ -306,172 +328,213 @@
     </div>
 
     <!-- MAIN BODY -->
-    <main class="max-w-7xl mx-auto px-4 md:px-8 space-y-32 py-16">
+    <main class="max-w-7xl mx-auto px-4 md:px-8 space-y-24 md:space-y-32 py-12 md:py-16">
 
         <!-- 1. HERO SECTION -->
-        <section id="home" class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center pt-8">
-            <div class="lg:col-span-7 space-y-6">
-                <!-- System Status Pulse banner -->
-                <div class="inline-flex items-center space-x-2 bg-zinc-900/60 border border-zinc-800 px-3 py-1 rounded-full text-xs font-mono">
-                    <span class="w-2 h-2 rounded-full bg-cyber-green animate-pulse"></span>
-                    <span class="text-[10px] text-zinc-400 tracking-wider uppercase">PORTFOLIO NODE: ONLINE • API_LATENCY: 12ms</span>
-                </div>
+        <section id="home" class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center pt-4 md:pt-10 scroll-mt-24">
+            <div class="lg:col-span-7 space-y-7">
+                <p class="inline-flex items-center gap-2 text-xs text-zinc-400 border border-zinc-800 bg-zinc-900/60 px-3 py-1 rounded-full">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyber-green"></span>
+                    Information Technology student &middot; {{ personal_info.location }}
+                </p>
                 
-                <div class="space-y-1">
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-none">
+                <div class="space-y-3">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.05]">
                         {{ personal_info.name }}
                     </h1>
-                    <p class="text-xs sm:text-sm font-mono text-cyber-accent font-semibold tracking-wider uppercase pt-1">
+                    <p class="text-sm sm:text-base font-mono text-cyber-accent">
                         {{ personal_info.title }}
                     </p>
                 </div>
                 
-                <h3 class="text-lg sm:text-xl font-mono text-cyber-cyan font-medium">
+                <p class="text-xl sm:text-2xl text-zinc-200 font-medium tracking-tight leading-snug max-w-xl">
                     {{ personal_info.tagline }}
-                </h3>
+                </p>
                 
-                <div class="text-xs sm:text-sm text-zinc-400 font-sans max-w-2xl leading-relaxed space-y-3">
+                <div class="text-base text-zinc-400 font-sans max-w-2xl leading-relaxed">
                     {% if personal_info.about_paragraphs %}
-                        {% for p in personal_info.about_paragraphs %}
-                            <p>{{ p|safe }}</p>
-                        {% endfor %}
+                        <p>{{ personal_info.about_paragraphs[0]|safe }}</p>
                     {% else %}
-                        <p>{{ personal_info.about_me }}</p>
+                        <p>{{ personal_info.about_me.split('
+
+')[0] }}</p>
                     {% endif %}
                 </div>
                 
                 <!-- CTA buttons -->
-                <div class="flex flex-wrap gap-4 pt-2">
-                    <a href="#projects" class="inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 hover:border-cyber-accent hover:text-white px-6 py-3 rounded text-sm font-mono text-zinc-300 shadow-lg shadow-black/40 hover:shadow-cyber-accent/5 transition-all">
-                        explore_work()
+                <div class="flex flex-wrap gap-3 pt-1">
+                    <a href="#projects" class="inline-flex items-center justify-center gap-2 bg-cyber-accent hover:bg-cyber-accentHover px-5 py-2.5 rounded-md text-sm font-semibold text-zinc-950 transition-colors">
+                        View my projects
+                        <span aria-hidden="true">&rarr;</span>
                     </a>
-                    <a href="#lab" class="inline-flex items-center justify-center bg-cyber-accent/10 border border-cyber-accent/30 hover:border-cyber-accent hover:bg-cyber-accent/20 px-6 py-3 rounded text-sm font-mono text-cyber-accent shadow-lg shadow-cyber-accent/5 hover:shadow-cyber-accent/15 transition-all">
-                        enter_lab_env()
+                    <a href="/static/Anshuman_resume.pdf" download="Anshuman_Maurya_Resume.pdf" class="inline-flex items-center justify-center bg-zinc-900 border border-zinc-700 hover:border-zinc-500 hover:bg-zinc-800 px-5 py-2.5 rounded-md text-sm font-medium text-zinc-200 transition-colors">
+                        Download résumé
                     </a>
-                    <a href="/static/Anshuman_resume.pdf" download="Anshuman_Maurya_Resume.pdf" class="inline-flex items-center justify-center bg-zinc-950 border border-zinc-850 hover:border-zinc-700 hover:text-white px-6 py-3 rounded text-sm font-mono text-zinc-400 hover:bg-zinc-900 shadow-lg transition-all">
-                        download_resume()
+                    <a href="#lab" class="inline-flex items-center justify-center px-3 py-2.5 rounded-md text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors">
+                        See my lab
                     </a>
                 </div>
                 
-                <!-- Social Links Grid -->
-                <div class="pt-6 space-y-3">
-                    <h3 class="text-xs font-mono text-zinc-500 uppercase tracking-widest">EXTERNAL_NODES_CONNECT</h3>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="{{ social_links.github }}" target="_blank" class="text-zinc-400 hover:text-zinc-100 transition-colors flex items-center space-x-1.5 text-xs font-mono">
-                            <span>[GitHub]</span>
-                        </a>
-                        <a href="{{ social_links.linkedin }}" target="_blank" class="text-zinc-400 hover:text-zinc-100 transition-colors flex items-center space-x-1.5 text-xs font-mono">
-                            <span>[LinkedIn]</span>
-                        </a>
-                        <a href="{{ social_links.youtube }}" target="_blank" class="text-zinc-400 hover:text-zinc-100 transition-colors flex items-center space-x-1.5 text-xs font-mono">
-                            <span>[YouTube]</span>
-                        </a>
-                        <a href="{{ social_links.leetcode }}" target="_blank" class="text-zinc-400 hover:text-zinc-100 transition-colors flex items-center space-x-1.5 text-xs font-mono">
-                            <span>[LeetCode]</span>
-                        </a>
-                        <a href="{{ social_links.email_link }}" class="text-zinc-400 hover:text-zinc-100 transition-colors flex items-center space-x-1.5 text-xs font-mono">
-                            <span>[Email]</span>
-                        </a>
-                    </div>
+                <!-- Social Links -->
+                <div class="flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 text-sm">
+                    <a href="{{ social_links.github }}" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-zinc-100 transition-colors">GitHub</a>
+                    <a href="{{ social_links.linkedin }}" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-zinc-100 transition-colors">LinkedIn</a>
+                    <a href="{{ social_links.youtube }}" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-zinc-100 transition-colors">YouTube</a>
+                    <a href="{{ social_links.leetcode }}" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-zinc-100 transition-colors">LeetCode</a>
+                    <a href="{{ social_links.email_link }}" class="text-zinc-400 hover:text-zinc-100 transition-colors">Email</a>
                 </div>
             </div>
 
-            <!-- Profile Photo & Scanning System Console Grid -->
-            <div class="lg:col-span-5 flex flex-col items-center justify-center space-y-4">
-                <div class="relative w-64 h-64 md:w-72 md:h-72 rounded-lg border border-zinc-800 bg-zinc-900/60 p-2 overflow-hidden group shadow-2xl glass-panel-glow">
-                    <!-- Scanning Line Anim -->
-                    <div class="scanline-container absolute inset-2 overflow-hidden rounded bg-zinc-950">
-                        <div class="scanline-line"></div>
-                        <img src="/static/anshuman.jpg?v=1.0.1" alt="Anshuman Maurya" class="w-full h-full object-cover grayscale contrast-[1.05] group-hover:scale-105 group-hover:grayscale-0 transition-all duration-700 relative z-10 opacity-85">
+            <!-- Profile Photo & Quick Facts -->
+            <div class="lg:col-span-5 flex flex-col items-center lg:items-end gap-5">
+                <div class="w-full max-w-sm">
+                    <div class="aspect-square w-full rounded-xl border border-zinc-800 bg-zinc-900 p-1.5 shadow-xl shadow-black/40">
+                        <img src="/static/anshuman.jpg?v=1.0.1" alt="Portrait of Anshuman Maurya" width="1024" height="1024" class="w-full h-full object-cover rounded-lg">
                     </div>
-                    <!-- Frame details -->
-                    <span class="absolute top-4 left-4 z-20 text-[9px] font-mono text-cyber-cyan bg-zinc-900/80 border border-zinc-800/80 px-1.5 py-0.5 rounded">NODE_01: ACTIVE</span>
-                    <span class="absolute bottom-4 right-4 z-20 text-[8px] font-mono text-zinc-500 bg-zinc-900/80 px-1.5 py-0.5 rounded">53.0722° N, 8.8010° E</span>
                 </div>
                 
-                <!-- Small console box -->
-                <div class="w-full max-w-sm bg-zinc-950/80 border border-zinc-800 rounded p-3 font-mono text-[10px] space-y-1.5 text-zinc-500 shadow-lg">
-                    <div class="flex justify-between items-center text-zinc-400 border-b border-zinc-800/50 pb-1 mb-2">
-                        <span>sys_boot_sequence.log</span>
-                        <span class="w-1.5 h-1.5 rounded-full bg-cyber-green"></span>
+                <dl class="w-full max-w-sm bg-zinc-900/50 border border-zinc-800 rounded-xl divide-y divide-zinc-800/80 text-sm">
+                    <div class="flex justify-between gap-4 px-4 py-3">
+                        <dt class="text-zinc-500">Studying</dt>
+                        <dd class="text-zinc-200 text-right">B.Tech IT &middot; AKGEC, 2023&ndash;27</dd>
                     </div>
-                    <p class="text-zinc-400">ANSHUMAN@HOME_SERVER:~$ ./init_portfolio.sh</p>
-                    <p>&gt; Checking system dependencies... OK</p>
-                    <p>&gt; Mounting templates/index.html... OK</p>
-                    <p>&gt; Syncing data.py content engine... OK</p>
-                    <p class="text-cyber-green">&gt; Systems initialized. Welcome to the lab environment.</p>
-                </div>
+                    <div class="flex justify-between gap-4 px-4 py-3">
+                        <dt class="text-zinc-500">Focus</dt>
+                        <dd class="text-zinc-200 text-right">Machine Learning &middot; AI &middot; Cloud</dd>
+                    </div>
+                    {% if currently_building %}
+                    <div class="flex justify-between gap-4 px-4 py-3">
+                        <dt class="text-zinc-500">Building</dt>
+                        <dd class="text-right"><a href="#now" class="text-zinc-200 hover:text-cyber-accent transition-colors">{{ currently_building[0].title.split(' — ')[0] }}</a></dd>
+                    </div>
+                    {% endif %}
+                    <div class="flex justify-between gap-4 px-4 py-3">
+                        <dt class="text-zinc-500">Based in</dt>
+                        <dd class="text-zinc-200 text-right">{{ personal_info.location }}</dd>
+                    </div>
+                </dl>
             </div>
         </section>
 
-        
-
-        <!-- 3. JOURNEY TIMELINE SECTION -->
-        <section id="journey" class="space-y-8 scroll-mt-20">
-            <div class="space-y-2 border-b border-zinc-800 pb-3">
-                <h2 class="text-xl font-bold tracking-tight text-white flex items-center font-mono">
-                    <span class="text-cyber-accent mr-2">/</span> MY_LEARNING_JOURNEY
-                </h2>
-                <p class="text-xs text-zinc-500 font-sans">A chronological narrative of my build experiences and system transitions.</p>
+        <!-- 2. ABOUT SECTION -->
+        <section id="about" class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16 scroll-mt-24">
+            <div class="lg:col-span-4 space-y-2">
+                <p class="section-eyebrow">01 &mdash; About</p>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">A bit about me</h2>
             </div>
-            
-            <div class="relative pl-6 md:pl-12 border-l border-zinc-800 space-y-12">
-                {% for milestone in timeline %}
-                <div class="relative group milestone-entry">
-                    <!-- Dot -->
-                    <div class="absolute -left-[31px] md:-left-[55px] top-1 w-4 h-4 rounded-full border-2 border-zinc-800 bg-zinc-950 group-hover:border-cyber-accent active-dot-glow transition-all duration-300"></div>
-                    
-                    <!-- Content -->
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8">
-                        <div class="font-mono text-sm">
-                            <span class="text-zinc-500 block">{{ milestone.year }}</span>
-                            <span class="text-[10px] tracking-wider uppercase text-cyber-cyan border border-cyber-cyan/20 px-1.5 py-0.5 rounded bg-cyber-cyan/5 inline-block mt-1">{{ milestone.category }}</span>
-                        </div>
-                        <div class="md:col-span-3 space-y-2">
-                            <h3 class="text-base font-bold text-white group-hover:text-cyber-accent transition-colors">{{ milestone.title }}</h3>
-                            <h4 class="text-xs font-mono text-zinc-400 font-semibold">{{ milestone.subtitle }}</h4>
-                            <p class="text-xs text-zinc-400 font-sans leading-relaxed">{{ milestone.description }}</p>
-                        </div>
+            <div class="lg:col-span-8 text-base text-zinc-400 leading-relaxed space-y-5 max-w-3xl">
+                {% if personal_info.about_paragraphs %}
+                    {% for p in personal_info.about_paragraphs[1:] %}
+                        <p>{{ p|safe }}</p>
+                    {% endfor %}
+                {% else %}
+                    {% for p in personal_info.about_me.split('
+
+')[1:] %}
+                        <p>{{ p }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            {% if focus_areas %}
+            <!-- What I work on -->
+            <div class="lg:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
+                {% for area in focus_areas %}
+                <div class="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6 space-y-3">
+                    <div class="flex items-center gap-3">
+                        <span class="font-mono text-xs text-cyber-accent">{{ '%02d' % loop.index }}</span>
+                        <h3 class="text-base font-semibold text-white">{{ area.name }}</h3>
+                    </div>
+                    <p class="text-sm text-zinc-400 leading-relaxed">{{ area.description }}</p>
+                    <div class="flex flex-wrap gap-1.5 pt-1">
+                        {% for tool in area.tools %}
+                        <span class="text-xs text-zinc-300 bg-zinc-950 border border-zinc-800 px-2 py-0.5 rounded-md">{{ tool }}</span>
+                        {% endfor %}
                     </div>
                 </div>
                 {% endfor %}
             </div>
+            {% endif %}
         </section>
 
         <!-- 4. ENGINEERING PROJECTS SECTION -->
-        <section id="projects" class="space-y-8 scroll-mt-20">
-            <div class="space-y-2 border-b border-zinc-800 pb-3">
-                <h2 class="text-xl font-bold tracking-tight text-white flex items-center font-mono">
-                    <span class="text-cyber-accent mr-2">#</span> ENGINEERING_PROJECTS
-                </h2>
-                <p class="text-xs text-zinc-500 font-sans">Click on any project to view technical architecture, engineering decisions, and implementation details.</p>
+        <section id="projects" class="space-y-10 scroll-mt-24">
+            <div class="space-y-3 max-w-2xl">
+                <p class="section-eyebrow">02 &mdash; Projects</p>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Selected projects</h2>
+                <p class="text-base text-zinc-400 leading-relaxed">Things I've designed and built end to end. Open a project for the architecture, the decisions behind it, and what I ran into along the way.</p>
             </div>
             
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {% for project in projects %}
-                <div onclick="openProjectDrawer('{{ project.id }}')" class="group bg-zinc-900/30 hover:bg-zinc-900/60 border border-zinc-800 hover:border-zinc-700/80 p-5 rounded-lg flex flex-col justify-between cursor-pointer glass-panel-glow hover:scale-[1.01] active:scale-[0.99] transition-all duration-300">
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-start">
-                            <div class="relative w-8 h-8 rounded border border-zinc-800 flex items-center justify-center bg-zinc-950 font-mono text-xs text-zinc-500 font-semibold group-hover:border-cyber-accent group-hover:text-cyber-accent transition-colors">
-                                P0{{ loop.index }}
-                            </div>
-                            <span class="text-[9px] font-mono text-zinc-600 bg-zinc-950 border border-zinc-800/80 px-2 py-0.5 rounded group-hover:text-cyber-cyan transition-colors">DETAILS &gt;</span>
-                        </div>
-                        <div>
-                            <h3 class="text-base font-bold text-zinc-100 group-hover:text-cyber-accent transition-colors">{{ project.name }}</h3>
-                            <p class="text-xs font-mono text-zinc-500 mt-0.5">{{ project.subtitle }}</p>
-                        </div>
-                        <p class="text-xs text-zinc-400 font-sans leading-relaxed line-clamp-3">{{ project.details.problem }}</p>
+                <article onclick="openProjectDrawer('{{ project.id }}')" onkeydown="if(event.target===this&&(event.key==='Enter'||event.key===' ')){event.preventDefault();openProjectDrawer('{{ project.id }}')}" tabindex="0" aria-label="{{ project.name }} — open project details" class="group bg-zinc-900/40 hover:bg-zinc-900/70 border border-zinc-800 hover:border-zinc-600 p-6 rounded-xl flex flex-col cursor-pointer hover:-translate-y-0.5 transition duration-200">
+                    <div class="flex items-center justify-between gap-3 mb-5">
+                        <span class="font-mono text-xs text-zinc-500">{{ '%02d' % loop.index }}</span>
+                        {% if project.demo %}
+                        <span class="inline-flex items-center gap-1.5 text-xs text-cyber-green bg-cyber-green/10 border border-cyber-green/20 px-2 py-0.5 rounded-full">
+                            <span class="w-1.5 h-1.5 rounded-full bg-cyber-green"></span>Live demo
+                        </span>
+                        {% else %}
+                        <span class="inline-flex items-center gap-1.5 text-xs text-zinc-400 bg-zinc-800/60 border border-zinc-700/60 px-2 py-0.5 rounded-full">
+                            <span class="w-1.5 h-1.5 rounded-full bg-zinc-500"></span>Local prototype
+                        </span>
+                        {% endif %}
+                    </div>
+                    <div class="space-y-1.5">
+                        <h3 class="text-lg font-semibold leading-snug text-zinc-100 group-hover:text-white transition-colors">{{ project.name }}</h3>
+                        <p class="text-sm text-cyber-accent">{{ project.subtitle }}</p>
+                    </div>
+                    <p class="text-sm text-zinc-400 font-sans leading-relaxed line-clamp-4 mt-4">{{ project.details.goal }}</p>
+                    
+                    <div class="flex flex-wrap gap-1.5 mt-5">
+                        {% for tech in project.technologies[:5] %}
+                        <span class="text-xs text-zinc-300 bg-zinc-950 border border-zinc-800 px-2 py-0.5 rounded-md">{{ tech }}</span>
+                        {% endfor %}
+                        {% if project.technologies|length > 5 %}
+                        <span class="text-xs text-zinc-500 bg-zinc-950 border border-zinc-800 px-2 py-0.5 rounded-md">+{{ project.technologies|length - 5 }}</span>
+                        {% endif %}
                     </div>
                     
-                    <div class="border-t border-zinc-800/60 pt-4 mt-6">
-                        <div class="flex flex-wrap gap-1.5">
-                            {% for tech in project.technologies[:4] %}
-                            <span class="text-[9px] font-mono text-zinc-500 bg-zinc-950 border border-zinc-800/60 px-2 py-0.5 rounded">{{ tech }}</span>
-                            {% endfor %}
-                            {% if project.technologies|length > 4 %}
-                            <span class="text-[9px] font-mono text-zinc-600 bg-zinc-950 border border-zinc-800/60 px-2 py-0.5 rounded">+{{ project.technologies|length - 4 }}</span>
+                    <div class="mt-auto pt-6">
+                        <div class="flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-zinc-800 pt-4 text-sm">
+                            <span class="font-medium text-zinc-200 group-hover:text-cyber-accent transition-colors">Read details <span aria-hidden="true">&rarr;</span></span>
+                            {% if project.github %}
+                            <a href="{{ project.github }}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="text-zinc-400 hover:text-zinc-100 transition-colors">{% if project.github.rstrip('/') == social_links.github.rstrip('/') %}GitHub profile{% else %}Source{% endif %}</a>
                             {% endif %}
+                            {% if project.demo %}
+                            <a href="{{ project.demo }}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="text-zinc-400 hover:text-zinc-100 transition-colors">Demo</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- 3. JOURNEY TIMELINE SECTION -->
+        <section id="journey" class="space-y-10 scroll-mt-24">
+            <div class="space-y-3 max-w-2xl">
+                <p class="section-eyebrow">03 &mdash; Journey</p>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Education &amp; learning path</h2>
+                <p class="text-base text-zinc-400 leading-relaxed">How I got here — from school and entrance exams to the tools and ideas I work with today.</p>
+            </div>
+            
+            <div class="relative pl-6 md:pl-12 border-l border-zinc-800 space-y-10 max-w-5xl">
+                {% for milestone in timeline %}
+                <div class="relative group milestone-entry">
+                    <!-- Dot -->
+                    <div class="absolute -left-[31px] md:-left-[55px] top-1 w-4 h-4 rounded-full border-2 border-zinc-700 bg-zinc-950 group-hover:border-cyber-accent transition-colors duration-200"></div>
+                    
+                    <!-- Content -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8">
+                        <div class="font-mono text-sm">
+                            <span class="text-zinc-300 block">{{ milestone.year }}</span>
+                            <span class="text-[11px] tracking-wide text-cyber-cyan border border-cyber-cyan/20 px-2 py-0.5 rounded-full bg-cyber-cyan/5 inline-block mt-2">{{ milestone.category }}</span>
+                        </div>
+                        <div class="md:col-span-3 space-y-1.5">
+                            <h3 class="text-base sm:text-lg font-semibold text-white">{{ milestone.title }}</h3>
+                            <p class="text-sm text-zinc-300">{{ milestone.subtitle }}</p>
+                            <p class="text-sm text-zinc-400 font-sans leading-relaxed max-w-2xl pt-1">{{ milestone.description }}</p>
                         </div>
                     </div>
                 </div>
@@ -480,53 +543,87 @@
         </section>
 
         <!-- 5. ANSHUMAN LAB SECTION -->
-        <section id="lab" class="space-y-8 scroll-mt-20">
-            <div class="space-y-2 border-b border-zinc-800 pb-3">
-                <h2 class="text-xl font-bold tracking-tight text-white flex items-center font-mono">
-                    <span class="text-cyber-accent mr-2">::</span> ANSHUMAN_LAB
-                </h2>
-                <p class="text-xs text-zinc-500 font-sans">Simulated infrastructure control room showing active microservices, local databases, and orchestrators ready for future integration.</p>
+        <section id="lab" class="space-y-10 scroll-mt-24">
+            <div class="space-y-3 max-w-2xl">
+                <p class="section-eyebrow">04 &mdash; Lab</p>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">My self-hosted lab</h2>
+                <p class="text-base text-zinc-400 leading-relaxed">The applications and services I run on my own server, including this website.</p>
             </div>
             
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Virtual Containers Grid -->
-                <div class="lg:col-span-2 space-y-4">
-                    <h3 class="text-xs font-mono text-zinc-500 uppercase tracking-widest flex items-center">
-                        <span class="w-1.5 h-1.5 rounded-full bg-cyber-cyan mr-1.5 animate-pulse"></span>
-                        ACTIVE_CONTAINERS_DECODER.log
-                    </h3>
+            <!-- Published Applications -->
+            <div class="space-y-4">
+                <h3 class="text-sm font-semibold text-zinc-200">Published applications</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {% for app in published_applications %}
+                    <a href="{{ app.link }}" target="_blank" rel="noopener noreferrer" class="group bg-zinc-900/40 hover:bg-zinc-900/70 border border-zinc-800 hover:border-zinc-600 p-5 rounded-xl transition-colors duration-200 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <div class="flex items-start justify-between gap-3">
+                                <h4 class="text-base font-semibold text-white">{{ app.title }}</h4>
+                                <span class="shrink-0 text-xs text-cyber-green bg-cyber-green/10 border border-cyber-green/20 px-2 py-0.5 rounded-full">{{ app.status }}</span>
+                            </div>
+                            <p class="text-sm font-mono text-cyber-cyan break-all">{{ app.domain }}</p>
+                            <p class="text-sm text-zinc-400 font-sans leading-relaxed">{{ app.description }}</p>
+                        </div>
+                        <div class="border-t border-zinc-800 pt-3 mt-4 flex items-center justify-between text-sm">
+                            <span class="text-zinc-400 group-hover:text-zinc-100 transition-colors">Visit site</span>
+                            <span class="text-zinc-400 group-hover:text-zinc-100 group-hover:translate-x-1 transition" aria-hidden="true">&rarr;</span>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Infrastructure Stack -->
+                <div class="lg:col-span-6 bg-zinc-900/40 border border-zinc-800 p-6 rounded-xl space-y-4">
+                    <div class="space-y-3">
+                        <h3 class="text-sm font-semibold text-zinc-200">How it's run</h3>
+                        <p class="text-sm text-zinc-400 font-sans leading-relaxed">
+                            Everything is managed through <strong class="text-zinc-200 font-medium">Coolify</strong>, an open-source, self-hosted alternative to Vercel/Heroku. 
+                            It handles containerized deployments, reverse proxy routing, and monitoring for each application.
+                        </p>
+                        <p class="text-sm text-zinc-400 font-sans leading-relaxed">
+                            <strong class="text-zinc-200 font-medium">Routing via Cloudflare Tunnel:</strong> each domain is tunneled through Cloudflare, 
+                            which sends traffic to the right backend service and provides HTTPS and DDoS protection.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Services Table -->
+                <div class="lg:col-span-6 space-y-4">
+                    <h3 class="text-sm font-semibold text-zinc-200">Running services</h3>
                     
-                    <div class="bg-zinc-950 border border-zinc-800 rounded overflow-x-auto">
-                        <table class="w-full text-left font-mono text-xs">
-                            <thead class="bg-zinc-900 border-b border-zinc-800 text-zinc-500 text-[10px]">
+                    <div class="bg-zinc-950 border border-zinc-800 rounded-xl overflow-x-auto">
+                        <table class="w-full text-left text-sm">
+                            <thead class="bg-zinc-900/70 border-b border-zinc-800 text-zinc-500 text-xs">
                                 <tr>
-                                    <th class="p-3">CONTAINER</th>
-                                    <th class="p-3">SERVICE TYPE</th>
-                                    <th class="p-3">BIND PORT</th>
-                                    <th class="p-3">STATUS</th>
+                                    <th scope="col" class="px-4 py-3 font-medium">Service</th>
+                                    <th scope="col" class="px-4 py-3 font-medium">Role</th>
+                                    <th scope="col" class="px-4 py-3 font-medium">Port</th>
+                                    <th scope="col" class="px-4 py-3 font-medium">Status</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-zinc-900" id="container-table-body">
                                 {% for svc in lab_services %}
-                                <tr class="hover:bg-zinc-900/20">
-                                    <td class="p-3 text-zinc-300 font-semibold">{{ svc.name }}</td>
-                                    <td class="p-3 text-zinc-500">{{ svc.type }}</td>
-                                    <td class="p-3 text-zinc-500">:{{ svc.port }}</td>
-                                    <td class="p-3">
+                                <tr class="hover:bg-zinc-900/30">
+                                    <td class="px-4 py-3 text-zinc-200 font-medium whitespace-nowrap">{{ svc.name }}</td>
+                                    <td class="px-4 py-3 text-zinc-400 whitespace-nowrap">{{ svc.type }}</td>
+                                    <td class="px-4 py-3 text-zinc-400 font-mono">{{ svc.port }}</td>
+                                    <td class="px-4 py-3">
                                         {% if 'Online' in svc.status %}
-                                        <span class="inline-flex items-center text-cyber-green text-[10px]">
-                                            <span class="w-1 h-1 rounded-full bg-cyber-green mr-1.5"></span>
-                                            online
+                                        <span class="inline-flex items-center text-cyber-green text-xs">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-cyber-green mr-1.5"></span>
+                                            Online
                                         </span>
                                         {% elif 'Building' in svc.status %}
-                                        <span class="inline-flex items-center text-amber-500 text-[10px] animate-pulse">
-                                            <span class="w-1 h-1 rounded-full bg-amber-500 mr-1.5"></span>
-                                            building
+                                        <span class="inline-flex items-center text-amber-500 text-xs">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-amber-500 mr-1.5"></span>
+                                            Building
                                         </span>
                                         {% else %}
-                                        <span class="inline-flex items-center text-zinc-600 text-[10px]">
-                                            <span class="w-1 h-1 rounded-full bg-zinc-600 mr-1.5"></span>
-                                            offline
+                                        <span class="inline-flex items-center text-zinc-500 text-xs">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-zinc-600 mr-1.5"></span>
+                                            Offline
                                         </span>
                                         {% endif %}
                                     </td>
@@ -535,137 +632,91 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="bg-zinc-950 border border-zinc-800 px-4 py-3 rounded-lg font-mono text-xs text-zinc-500 space-y-1 overflow-x-auto">
+                        <p># Coolify deploy</p>
+                        <p class="text-zinc-300 whitespace-nowrap">cd /root/coolify &amp;&amp; docker compose up -d</p>
+                    </div>
                 </div>
 
-                <!-- Published Applications -->
-                <div class="bg-zinc-900/30 border border-zinc-800 p-5 rounded-lg space-y-4 glass-panel-glow">
-                    <h4 class="text-sm font-bold text-white font-mono flex items-center mb-4">
-                        <span class="text-cyber-cyan mr-1.5">◇</span> PUBLISHED_APPLICATIONS
-                    </h4>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        {% for app in published_applications %}
-                        <a href="{{ app.link }}" target="_blank" rel="noopener noreferrer" class="group bg-zinc-900/50 hover:bg-zinc-900 border border-zinc-800 hover:border-cyber-cyan/50 p-4 rounded-lg transition-all duration-300 flex flex-col justify-between">
-                            <div class="space-y-2">
-                                <div class="flex items-start justify-between">
-                                    <h5 class="text-sm font-bold text-white group-hover:text-cyber-cyan transition-colors">{{ app.domain }}</h5>
-                                    <span class="text-[9px] font-mono text-cyber-green bg-cyber-green/10 px-2 py-0.5 rounded">{{ app.status }}</span>
-                                </div>
-                                <p class="text-[11px] text-zinc-400 font-sans">{{ app.title }}</p>
-                                <p class="text-[10px] text-zinc-500 font-sans leading-relaxed">{{ app.description }}</p>
-                            </div>
-                            <div class="border-t border-zinc-800/50 pt-3 mt-3 flex items-center justify-between">
-                                <span class="text-[9px] font-mono text-zinc-600">{{ app.routing }}</span>
-                                <span class="text-cyber-cyan group-hover:translate-x-1 transition-transform">→</span>
-                            </div>
-                        </a>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="bg-zinc-900/30 border border-zinc-800 p-5 rounded-lg space-y-4 flex flex-col justify-between glass-panel-glow">
-                    <div class="space-y-3">
-                        <h4 class="text-sm font-bold text-white font-mono flex items-center">
-                            <span class="text-cyber-accent mr-1.5">&gt;</span> INFRASTRUCTURE_STACK
-                        </h4>
-                        <p class="text-xs text-zinc-400 font-sans leading-relaxed">
-                            All services are managed through <strong>Coolify</strong> — an open-source self-hosted alternative to Vercel/Heroku. 
-                            This orchestrator handles containerized deployments, reverse proxy routing, and monitoring for all applications.
-                        </p>
-                        <p class="text-[10px] font-mono text-zinc-500">
-                            <strong class="text-cyber-cyan">Routing via Cloudflare Tunnel:</strong> All domains are securely tunneled through Cloudflare, 
-                            which routes incoming traffic to the appropriate backend service based on domain matching. This provides automatic HTTPS, 
-                            DDoS protection, and seamless load balancing.
-                        </p>
-                        <p class="text-[10px] font-mono text-zinc-500 mt-2">
-                            Visit the published applications above to explore my portfolio, client work, and admin dashboards. 
-                            Each domain is independently managed and can be accessed via direct links.
-                        </p>
-                    </div>
-                    <div class="bg-zinc-950 border border-zinc-800/80 p-3 rounded font-mono text-[9px] text-zinc-500 space-y-1">
-                        <p># Coolify Deploy Command</p>
-                        <p class="text-zinc-400">cd /root/coolify && docker compose up -d</p>
-                        <p class="text-zinc-600">Infrastructure orchestration active...</p>
-                    </div>
-                </div>
             </div>
         </section>
 
         <!-- 6. SELF-HOSTED INFRASTRUCTURE STORY -->
-        <section id="infrastructure" class="space-y-8 scroll-mt-20">
-            <div class="space-y-2 border-b border-zinc-800 pb-3">
-                <h2 class="text-xl font-bold tracking-tight text-white flex items-center font-mono">
-                    <span class="text-cyber-accent mr-2">\</span> SELF_HOSTED_INFRASTRUCTURE
-                </h2>
-                <p class="text-xs text-zinc-500 font-sans">The conceptual topology showing how my development code moves from local machines to containerized server deployments.</p>
+        <section id="infrastructure" class="space-y-10 scroll-mt-24">
+            <div class="space-y-3 max-w-2xl">
+                <p class="section-eyebrow">05 &mdash; Infrastructure</p>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">From laptop to production</h2>
+                <p class="text-base text-zinc-400 leading-relaxed">How code moves from my machine to containerized deployments on my own server.</p>
             </div>
 
-            <div class="bg-zinc-900/10 border border-zinc-800/80 p-6 md:p-8 rounded-lg space-y-8 glass-panel-glow">
+            <div class="bg-zinc-900/30 border border-zinc-800 p-5 sm:p-8 rounded-xl space-y-8">
                 <!-- SVG Pipeline Diagram -->
                 <div class="w-full overflow-x-auto py-4">
-                    <svg viewBox="0 0 1000 160" class="min-w-[800px] w-full font-mono text-[10px] tracking-tight">
+                    <svg viewBox="40 20 840 140" class="min-w-[680px] w-full font-mono text-[10px] tracking-tight" role="img" aria-label="Deployment flow: local workstation, GitHub, Linux server, Coolify, production Docker service">
                         <!-- Node Lines -->
-                        <path d="M120 80 H880" stroke="#27272a" stroke-width="2" stroke-dasharray="4 4" />
+                        <path d="M100 80 H820" stroke="#364252" stroke-width="2" stroke-dasharray="4 4" />
                         
                         <!-- Pulsing flow line (simulated) -->
-                        <path id="pulse-path" d="M120 80 H880" stroke="#3b82f6" stroke-width="2" stroke-dasharray="20 180" class="animate-[pulse-slow_3s_linear_infinite]" opacity="0.8" />
+                        <path id="pulse-path" d="M100 80 H820" stroke="#2dd4bf" stroke-width="2" stroke-dasharray="20 180" class="animate-[pulse-slow_3s_linear_infinite]" opacity="0.8" />
                         
                         <!-- Local Machine Node -->
                         <g transform="translate(100, 80)">
-                            <circle r="35" fill="#09090b" stroke="#3b82f6" stroke-width="2" />
+                            <circle r="44" fill="#0b1017" stroke="#2dd4bf" stroke-width="2" />
                             <text text-anchor="middle" y="-5" fill="#ffffff" font-weight="bold">LOCAL</text>
-                            <text text-anchor="middle" y="10" fill="#3b82f6" font-size="8">WORKSTATION</text>
-                            <text text-anchor="middle" y="55" fill="#52525b">Code & Train</text>
+                            <text text-anchor="middle" y="10" fill="#2dd4bf" font-size="8">WORKSTATION</text>
+                            <text text-anchor="middle" y="64" fill="#6f7d90">Code & Train</text>
                         </g>
 
                         <!-- GitHub Node -->
                         <g transform="translate(280, 80)">
-                            <circle r="35" fill="#09090b" stroke="#27272a" stroke-width="1" />
-                            <text text-anchor="middle" y="-5" fill="#a1a1aa">GIT PUSH</text>
-                            <text text-anchor="middle" y="10" fill="#52525b" font-size="8">GITHUB REPO</text>
-                            <text text-anchor="middle" y="55" fill="#52525b">Repo Hook</text>
+                            <circle r="44" fill="#0b1017" stroke="#232e3c" stroke-width="1" />
+                            <text text-anchor="middle" y="-5" fill="#8d9aab">GIT PUSH</text>
+                            <text text-anchor="middle" y="10" fill="#6f7d90" font-size="8">GITHUB REPO</text>
+                            <text text-anchor="middle" y="64" fill="#6f7d90">Repo Hook</text>
                         </g>
 
                         <!-- Linux Server Node -->
                         <g transform="translate(460, 80)">
-                            <circle r="35" fill="#09090b" stroke="#27272a" stroke-width="1" />
-                            <text text-anchor="middle" y="-5" fill="#a1a1aa">LINUX</text>
-                            <text text-anchor="middle" y="10" fill="#52525b" font-size="8">DEBIAN HOST</text>
-                            <text text-anchor="middle" y="55" fill="#52525b">Docker Host</text>
+                            <circle r="44" fill="#0b1017" stroke="#232e3c" stroke-width="1" />
+                            <text text-anchor="middle" y="-5" fill="#8d9aab">LINUX</text>
+                            <text text-anchor="middle" y="10" fill="#6f7d90" font-size="8">DEBIAN HOST</text>
+                            <text text-anchor="middle" y="64" fill="#6f7d90">Docker Host</text>
                         </g>
 
                         <!-- Coolify Node -->
                         <g transform="translate(640, 80)">
-                            <circle r="35" fill="#09090b" stroke="#06b6d4" stroke-width="2" />
+                            <circle r="44" fill="#0b1017" stroke="#7dd3fc" stroke-width="2" />
                             <text text-anchor="middle" y="-5" fill="#ffffff" font-weight="bold">COOLIFY</text>
-                            <text text-anchor="middle" y="10" fill="#06b6d4" font-size="8">ORCHESTRATOR</text>
-                            <text text-anchor="middle" y="55" fill="#52525b">Server Node</text>
+                            <text text-anchor="middle" y="10" fill="#7dd3fc" font-size="8">ORCHESTRATOR</text>
+                            <text text-anchor="middle" y="64" fill="#6f7d90">Server Node</text>
                         </g>
 
                         <!-- Deployed App Node -->
                         <g transform="translate(820, 80)">
-                            <circle r="35" fill="#09090b" stroke="#10b981" stroke-width="2" />
+                            <circle r="44" fill="#0b1017" stroke="#4ade80" stroke-width="2" />
                             <text text-anchor="middle" y="-5" fill="#ffffff" font-weight="bold">PRODUCTION</text>
-                            <text text-anchor="middle" y="10" fill="#10b981" font-size="8">DOCKER SERVICE</text>
-                            <text text-anchor="middle" y="55" fill="#52525b">Online Portals</text>
+                            <text text-anchor="middle" y="10" fill="#4ade80" font-size="8">DOCKER SERVICE</text>
+                            <text text-anchor="middle" y="64" fill="#6f7d90">Online Portals</text>
                         </g>
                     </svg>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-zinc-800/80 font-sans">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 pt-6 border-t border-zinc-800 font-sans">
                     <div class="space-y-1">
-                        <h4 class="text-sm font-bold text-zinc-200">1. Clean Deploy Loops</h4>
-                        <p class="text-xs text-zinc-500 leading-relaxed">
+                        <h4 class="text-sm font-semibold text-zinc-100">1. Clean Deploy Loops</h4>
+                        <p class="text-sm text-zinc-400 leading-relaxed">
                             Rather than deploying via manual CLI tools, I explore automated workflows. Pushing to GitHub triggers Webhook notifications to my Debian Server.
                         </p>
                     </div>
                     <div class="space-y-1">
-                        <h4 class="text-sm font-bold text-zinc-200">2. Docker Containerization</h4>
-                        <p class="text-xs text-zinc-500 leading-relaxed">
+                        <h4 class="text-sm font-semibold text-zinc-100">2. Docker Containerization</h4>
+                        <p class="text-sm text-zinc-400 leading-relaxed">
                             Each ML model or app wrapper has its own environment definitions. By binding volume maps, I make sure databases persist separate from execution scripts.
                         </p>
                     </div>
                     <div class="space-y-1">
-                        <h4 class="text-sm font-bold text-zinc-200">3. Coolify Server Deployments</h4>
-                        <p class="text-xs text-zinc-500 leading-relaxed">
+                        <h4 class="text-sm font-semibold text-zinc-100">3. Coolify Server Deployments</h4>
+                        <p class="text-sm text-zinc-400 leading-relaxed">
                             By managing configurations through Coolify, I receive SSL certificates automatically, manage port proxies, and see resource usage metrics in real-time.
                         </p>
                     </div>
@@ -674,26 +725,27 @@
         </section>
 
         <!-- 7. SKILLS CONSTELLATION SECTION -->
-        <section id="skills" class="space-y-8 scroll-mt-20">
-            <div class="space-y-2 border-b border-zinc-800 pb-3">
-                <h2 class="text-xl font-bold tracking-tight text-white flex items-center font-mono">
-                    <span class="text-cyber-accent mr-2">&gt;_</span> TECHNICAL_CONSTELLATION
-                </h2>
-                <p class="text-xs text-zinc-500 font-sans">Hover over any skill to query experience details and specific project applications in the floating console reader.</p>
+        <section id="skills" class="space-y-10 scroll-mt-24">
+            <div class="space-y-3 max-w-2xl">
+                <p class="section-eyebrow">06 &mdash; Skills</p>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Tools I work with</h2>
+                <p class="text-base text-zinc-400 leading-relaxed">Grouped by area. Hover, tap, or tab to a skill to see where and how I have used it.</p>
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                 <!-- Skills List Categories -->
                 <div class="lg:col-span-8 space-y-6">
                     {% for category, items in skills.items() %}
-                    <div class="space-y-2">
-                        <h3 class="text-xs font-mono text-zinc-500 uppercase tracking-widest">{{ category }}</h3>
+                    <div class="space-y-3">
+                        <h3 class="text-xs font-mono text-zinc-500 uppercase tracking-wider">{{ category }}</h3>
                         <div class="flex flex-wrap gap-2">
                             {% for skill in items %}
-                            <button 
-                                onmouseover="showSkillInfo('{{ skill.name }}', '{{ skill.note|replace("'", "\\'") }}')" 
+                            <button type="button"
+                                onmouseover="showSkillInfo('{{ skill.name }}', '{{ skill.note|replace("'", "\\'") }}')"
+                                onfocus="showSkillInfo('{{ skill.name }}', '{{ skill.note|replace("'", "\\'") }}')"
+                                onclick="showSkillInfo('{{ skill.name }}', '{{ skill.note|replace("'", "\\'") }}')"
                                 onmouseout="hideSkillInfo()"
-                                class="bg-zinc-900/40 hover:bg-cyber-accentGlow border border-zinc-800 hover:border-cyber-accent px-3 py-1.5 rounded font-mono text-xs text-zinc-300 hover:text-white transition-all cursor-default"
+                                class="bg-zinc-900/60 hover:bg-zinc-800 focus:bg-zinc-800 border border-zinc-800 hover:border-zinc-600 px-3 py-1.5 rounded-md text-sm text-zinc-300 hover:text-white transition-colors"
                             >
                                 {{ skill.name }}
                             </button>
@@ -704,159 +756,165 @@
                 </div>
 
                 <!-- Floating Interactive Terminal Reader -->
-                <div class="lg:col-span-4 flex flex-col">
-                    <div class="bg-zinc-950 border border-zinc-800 rounded-lg p-4 font-mono text-xs flex-1 flex flex-col justify-between min-h-[220px] shadow-lg">
+                <div class="lg:col-span-4">
+                    <div class="lg:sticky lg:top-24 bg-zinc-950 border border-zinc-800 rounded-xl p-5 font-mono text-xs flex flex-col min-h-[200px]">
                         <div class="space-y-3">
                             <div class="flex justify-between items-center text-zinc-500 border-b border-zinc-900 pb-1.5">
-                                <span>SKILL_CONSOLES.sh</span>
-                                <span class="w-1.5 h-1.5 rounded-full bg-cyber-accent animate-pulse"></span>
+                                <span>skill notes</span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-cyber-accent"></span>
                             </div>
-                            <div id="skill-console-output" class="space-y-2 text-zinc-400">
-                                <p class="text-zinc-600"># Hover over a tech node to inspect output...</p>
-                                <p class="text-[10px] text-zinc-600">QUERY STAGE: AWAITING_MOUSEOVER</p>
+                            <div id="skill-console-output" class="space-y-2 text-zinc-400" aria-live="polite">
+                                <p class="text-zinc-500 font-sans text-sm leading-relaxed">Select a skill to see how I've used it.</p>
                             </div>
-                        </div>
-                        <div class="text-[9px] text-zinc-600 border-t border-zinc-900 pt-2 mt-4 flex justify-between">
-                            <span>SESSION: INACTIVE</span>
-                            <span>STREAM: EOF</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- YouTube Dynamic Videos Feed -->
-            <div class="space-y-4 pt-8 border-t border-zinc-900">
-                <h3 class="text-xs font-mono text-zinc-400 uppercase tracking-widest flex items-center">
-                    <span class="w-2 h-2 rounded-full bg-red-500 mr-2 animate-pulse"></span>
-                    LIVE_YOUTUBE_VLOGS_&amp;_TUTORIALS.sh
-                </h3>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {% for video in youtube_videos %}
-                    <a href="{{ video.link }}" target="_blank" class="group bg-zinc-900/20 hover:bg-zinc-900/50 border border-zinc-800 hover:border-red-500/30 rounded-lg overflow-hidden flex flex-col justify-between transition-all duration-300 shadow-lg">
-                        <div class="relative aspect-video w-full overflow-hidden bg-zinc-950">
-                            <img src="{{ video.thumbnail }}" alt="{{ video.title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100">
-                            <!-- Play button overlay -->
-                            <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <div class="w-12 h-12 rounded-full bg-red-650 flex items-center justify-center text-white shadow-lg">
-                                    <svg class="w-6 h-6 fill-current pl-1" viewBox="0 0 24 24">
-                                        <path d="M8 5v14l11-7z"/>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-4 space-y-2 flex-1 flex flex-col justify-between">
-                            <h4 class="text-xs font-bold text-zinc-200 line-clamp-2 group-hover:text-red-400 transition-colors font-mono leading-snug">{{ video.title }}</h4>
-                            <div class="flex justify-between items-center text-[9px] font-mono text-zinc-500 pt-2 border-t border-zinc-850">
-                                <span>Published: {{ video.date }}</span>
-                                <span class="text-red-500 font-semibold">[PLAY VIDEO]</span>
-                            </div>
-                        </div>
-                    </a>
-                    {% else %}
-                    <!-- Fallback placeholder cards if no videos are returned or loading fails -->
-                    <div class="bg-zinc-900/10 border border-zinc-800/80 p-5 rounded-lg flex flex-col justify-between text-center min-h-[180px] justify-center items-center col-span-3">
-                        <span class="text-xs font-mono text-zinc-500">AWAITING_DEMAND_FETCH_OR_FEED_ERROR</span>
-                        <p class="text-[10px] text-zinc-600 mt-2">Could not retrieve the live feed. Please check back later or view directly on YouTube.</p>
-                    </div>
-                    {% endfor %}
+        <!-- 8. BUILD LOG: YouTube Dynamic Videos Feed -->
+        <section id="build-log" class="space-y-10 scroll-mt-24">
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                <div class="space-y-3 max-w-2xl">
+                    <p class="section-eyebrow">07 &mdash; Build log</p>
+                    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Videos &amp; tutorials</h2>
+                    <p class="text-base text-zinc-400 leading-relaxed">On my YouTube channel I explain ML, generative AI, and modern computing concepts in simple terms.</p>
                 </div>
+                <a href="{{ social_links.youtube }}" target="_blank" rel="noopener noreferrer" class="self-start sm:self-auto shrink-0 inline-flex items-center gap-2 text-sm text-zinc-300 hover:text-white border border-zinc-700 hover:border-zinc-500 px-4 py-2 rounded-md transition-colors">
+                    Visit channel <span aria-hidden="true">&rarr;</span>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for video in youtube_videos %}
+                <a href="{{ video.link }}" target="_blank" rel="noopener noreferrer" class="group bg-zinc-900/40 hover:bg-zinc-900/70 border border-zinc-800 hover:border-zinc-600 rounded-xl overflow-hidden flex flex-col transition-colors duration-200">
+                    <div class="relative aspect-video w-full overflow-hidden bg-zinc-950">
+                        <img src="{{ video.thumbnail }}" alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500">
+                        <!-- Play button overlay -->
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center text-white shadow-lg">
+                                <svg class="w-6 h-6 fill-current pl-0.5" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 flex-1 flex flex-col justify-between gap-3">
+                        <h3 class="text-sm font-medium text-zinc-100 line-clamp-2 leading-snug">{{ video.title }}</h3>
+                        <div class="flex justify-between items-center text-xs text-zinc-500">
+                            <span>{{ video.date }}</span>
+                            <span class="text-zinc-400 group-hover:text-zinc-100 transition-colors">Watch <span aria-hidden="true">&rarr;</span></span>
+                        </div>
+                    </div>
+                </a>
+                {% else %}
+                <!-- Fallback if no videos are returned or loading fails -->
+                <div class="bg-zinc-900/30 border border-zinc-800 p-8 rounded-xl flex flex-col text-center min-h-[160px] justify-center items-center sm:col-span-2 lg:col-span-3">
+                    <p class="text-sm text-zinc-300">The video feed couldn't be loaded right now.</p>
+                    <a href="{{ social_links.youtube }}" target="_blank" rel="noopener noreferrer" class="text-sm text-cyber-accent hover:underline mt-2">Watch on YouTube instead &rarr;</a>
+                </div>
+                {% endfor %}
             </div>
         </section>
 
         <!-- 9. CURRENTLY BUILDING / NOW SECTION -->
-        <section id="now" class="space-y-8 scroll-mt-20">
-            <div class="space-y-2 border-b border-zinc-800 pb-3">
-                <h2 class="text-xl font-bold tracking-tight text-white flex items-center font-mono">
-                    <span class="text-cyber-accent mr-2">&amp;</span> CURRENTLY_BUILDING_&amp;_LEARNING
-                </h2>
-                <p class="text-xs text-zinc-500 font-sans">This section represents what I am working toward next, distinguishing it from completed resume items.</p>
+        <section id="now" class="space-y-10 scroll-mt-24">
+            <div class="space-y-3 max-w-2xl">
+                <p class="section-eyebrow">08 &mdash; Now</p>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Currently building &amp; learning</h2>
+                <p class="text-base text-zinc-400 leading-relaxed">What I'm working on right now. These are in progress, not finished work.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {% for build in currently_building %}
-                <div class="bg-zinc-900/40 border border-zinc-800 p-5 rounded-lg space-y-3 relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 w-1 h-full bg-cyber-accent group-hover:bg-cyber-cyan transition-colors"></div>
-                    <h3 class="text-sm font-bold text-white font-mono pl-2">{{ build.title }}</h3>
-                    <p class="text-xs text-zinc-400 font-sans leading-relaxed pl-2">{{ build.description }}</p>
-                    {% if build.technologies %}
-                    <div class="text-[9px] font-mono text-zinc-500 pl-2 pt-2 border-t border-zinc-800/50 pt-3">
-                        <span class="text-cyber-cyan font-semibold">STACK:</span> {{ build.technologies }}
-                    </div>
-                    {% endif %}
-                    <div class="text-[9px] font-mono text-zinc-600 pl-2 uppercase pt-2">
-                        STATUS: 
+                <div class="bg-zinc-900/40 border border-zinc-800 p-6 rounded-xl flex flex-col gap-3">
+                    <div>
                         {% if 'ACTIVE' in build.status %}
-                        <span class="text-cyber-green font-semibold">{{ build.status }}</span>
+                        <span class="inline-flex items-center gap-1.5 text-xs text-cyber-green bg-cyber-green/10 border border-cyber-green/20 px-2 py-0.5 rounded-full">
+                            <span class="w-1.5 h-1.5 rounded-full bg-cyber-green"></span>{{ build.status|replace('_', ' ')|capitalize }}
+                        </span>
                         {% else %}
-                        <span class="text-amber-600">{{ build.status }}</span>
+                        <span class="inline-flex items-center gap-1.5 text-xs text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-full">
+                            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>{{ build.status|replace('_', ' ')|capitalize }}
+                        </span>
                         {% endif %}
                     </div>
+                    <h3 class="text-base font-semibold text-white leading-snug">{{ build.title }}</h3>
+                    <p class="text-sm text-zinc-400 font-sans leading-relaxed">{{ build.description }}</p>
+                    {% if build.technologies %}
+                    <p class="text-xs text-zinc-500 leading-relaxed border-t border-zinc-800 pt-3 mt-auto">
+                        <span class="text-zinc-300 font-medium">Stack:</span> {{ build.technologies }}
+                    </p>
+                    {% endif %}
                 </div>
                 {% endfor %}
             </div>
         </section>
 
         <!-- 10. ACHIEVEMENTS SECTION -->
-        <section class="grid grid-cols-2 md:grid-cols-4 gap-6 border-y border-zinc-800/80 py-12">
+        <section aria-label="Highlights" class="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {% for ach in achievements %}
-            <div class="text-center space-y-1">
-                <span class="text-3xl md:text-4xl font-mono font-bold text-white tracking-tight block">{{ ach.metric }}</span>
-                <span class="text-xs font-mono text-cyber-cyan block font-medium">{{ ach.label }}</span>
-                <span class="text-[10px] text-zinc-500 block leading-tight px-2">{{ ach.description }}</span>
+            <div class="bg-zinc-900/40 border border-zinc-800 rounded-xl p-5 space-y-1.5">
+                <span class="text-2xl md:text-3xl font-bold text-white tracking-tight block">{{ ach.metric }}</span>
+                <span class="text-sm text-zinc-200 block font-medium">{{ ach.label }}</span>
+                <span class="text-xs text-zinc-500 block leading-relaxed">{{ ach.description }}</span>
             </div>
             {% endfor %}
         </section>
 
         <!-- 11. CONTACT & LET'S BUILD -->
-        <section id="contact" class="grid grid-cols-1 lg:grid-cols-12 gap-12 scroll-mt-20">
-            <div class="lg:col-span-5 space-y-4">
-                <span class="text-[10px] text-cyber-accent font-mono font-bold uppercase tracking-widest">CONNECT_SESSION</span>
-                <h2 class="text-3xl font-extrabold text-white leading-none">LET'S BUILD SOMETHING.</h2>
-                <p class="text-xs text-zinc-400 font-sans leading-relaxed">
-                    Have an idea for an AI application, need assistance configuring your server deployment pipelines, 
-                    or looking to recruit a builder who is enthusiastic about system architectures? 
-                    Get in touch.
+        <section id="contact" class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 scroll-mt-24 border-t border-zinc-800 pt-20">
+            <div class="lg:col-span-5 space-y-5">
+                <p class="section-eyebrow">09 &mdash; Contact</p>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Let's build something.</h2>
+                <p class="text-base text-zinc-400 font-sans leading-relaxed">
+                    Whether you're hiring, have an idea for an AI application, or want to talk about deployment and self-hosting,
+                    I'd be glad to hear from you. Email is the quickest way to reach me.
                 </p>
-                <div class="pt-4 space-y-2 font-mono text-xs">
-                    <p class="flex items-center text-zinc-400">
-                        <span class="text-zinc-600 mr-2">Email:</span>
-                        <a href="{{ social_links.email_link }}" class="text-cyber-cyan hover:underline">{{ personal_info.email }}</a>
-                    </p>
-                    <p class="flex items-center text-zinc-400">
-                        <span class="text-zinc-600 mr-2">Phone:</span>
-                        <span class="text-zinc-300">{{ personal_info.phone }}</span>
-                    </p>
-                    <p class="flex items-center text-zinc-400">
-                        <span class="text-zinc-600 mr-2">Loc:</span>
-                        <span class="text-zinc-300">{{ personal_info.location }}</span>
-                    </p>
-                </div>
+                <dl class="pt-2 space-y-3 text-sm">
+                    <div class="flex gap-3">
+                        <dt class="w-20 shrink-0 text-zinc-500">Email</dt>
+                        <dd class="min-w-0"><a href="{{ social_links.email_link }}" class="text-zinc-100 hover:text-cyber-accent underline decoration-zinc-700 underline-offset-4 hover:decoration-cyber-accent break-all transition-colors">{{ personal_info.email }}</a></dd>
+                    </div>
+                    <div class="flex gap-3">
+                        <dt class="w-20 shrink-0 text-zinc-500">Phone</dt>
+                        <dd><a href="tel:{{ personal_info.phone|replace('-', '') }}" class="text-zinc-200 hover:text-cyber-accent transition-colors">{{ personal_info.phone }}</a></dd>
+                    </div>
+                    <div class="flex gap-3">
+                        <dt class="w-20 shrink-0 text-zinc-500">Location</dt>
+                        <dd class="text-zinc-200">{{ personal_info.location }}</dd>
+                    </div>
+                    <div class="flex gap-3">
+                        <dt class="w-20 shrink-0 text-zinc-500">Elsewhere</dt>
+                        <dd class="flex flex-wrap gap-x-4 gap-y-1">
+                            <a href="{{ social_links.github }}" target="_blank" rel="noopener noreferrer" class="text-zinc-200 hover:text-cyber-accent transition-colors">GitHub</a>
+                            <a href="{{ social_links.linkedin }}" target="_blank" rel="noopener noreferrer" class="text-zinc-200 hover:text-cyber-accent transition-colors">LinkedIn</a>
+                        </dd>
+                    </div>
+                </dl>
             </div>
 
-            <!-- Contact Form UI -->
-            <div class="lg:col-span-7 bg-zinc-900/30 border border-zinc-800 p-6 rounded-lg glass-panel-glow space-y-4">
-                <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4 font-mono text-xs">
-                    <!-- Formspree Direct Submission Endpoint -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="space-y-1.5">
-                            <label class="text-zinc-500" for="name">NAME</label>
-                            <input required type="text" name="name" id="contact-name" class="w-full bg-zinc-950 border border-zinc-800 rounded p-2.5 outline-none text-zinc-100 focus:border-cyber-accent" placeholder="Enter name">
+            <!-- Contact Form UI (sent via FormSubmit) -->
+            <div class="lg:col-span-7 bg-zinc-900/40 border border-zinc-800 p-5 sm:p-7 rounded-xl">
+                <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-5 text-sm">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div class="space-y-2">
+                            <label class="block text-zinc-300 font-medium" for="contact-name">Name</label>
+                            <input required type="text" name="name" id="contact-name" autocomplete="name" class="w-full bg-zinc-950 border border-zinc-800 rounded-md px-3 py-2.5 outline-none text-zinc-100 placeholder-zinc-600 focus:border-cyber-accent transition-colors" placeholder="Your name">
                         </div>
-                        <div class="space-y-1.5">
-                            <label class="text-zinc-500" for="email">EMAIL</label>
-                            <input required type="email" name="email" id="contact-email" class="w-full bg-zinc-950 border border-zinc-800 rounded p-2.5 outline-none text-zinc-100 focus:border-cyber-accent" placeholder="Enter email">
+                        <div class="space-y-2">
+                            <label class="block text-zinc-300 font-medium" for="contact-email">Email</label>
+                            <input required type="email" name="email" id="contact-email" autocomplete="email" class="w-full bg-zinc-950 border border-zinc-800 rounded-md px-3 py-2.5 outline-none text-zinc-100 placeholder-zinc-600 focus:border-cyber-accent transition-colors" placeholder="you@example.com">
                         </div>
                     </div>
-                    <div class="space-y-1.5">
-                        <label class="text-zinc-500" for="message">MESSAGE</label>
-                        <textarea required name="message" id="contact-message" rows="4" class="w-full bg-zinc-950 border border-zinc-800 rounded p-2.5 outline-none text-zinc-100 focus:border-cyber-accent" placeholder="Type your message details..."></textarea>
+                    <div class="space-y-2">
+                        <label class="block text-zinc-300 font-medium" for="contact-message">Message</label>
+                        <textarea required name="message" id="contact-message" rows="5" class="w-full bg-zinc-950 border border-zinc-800 rounded-md px-3 py-2.5 outline-none text-zinc-100 placeholder-zinc-600 focus:border-cyber-accent transition-colors resize-y" placeholder="What would you like to talk about?"></textarea>
                     </div>
-                    <div class="flex justify-between items-center pt-2">
-                        <span id="form-status" class="text-[10px] text-zinc-600">AWAITING_INPUT</span>
-                        <button type="submit" class="bg-cyber-accent hover:bg-blue-600 text-white font-bold px-5 py-2.5 rounded border border-blue-400/20 transition-all flex items-center space-x-2">
-                            <span>submit_form()</span>
+                    <div class="flex flex-col-reverse sm:flex-row sm:justify-between sm:items-center gap-3 pt-1">
+                        <span id="form-status" class="text-xs text-zinc-500" role="status" aria-live="polite"></span>
+                        <button type="submit" class="bg-cyber-accent hover:bg-cyber-accentHover text-zinc-950 font-semibold px-5 py-2.5 rounded-md transition-colors inline-flex items-center justify-center">
+                            <span>Send message</span>
                         </button>
                     </div>
                 </form>
@@ -866,16 +924,16 @@
     </main>
 
     <!-- FLOATING INTERACTIVE TERMINAL EMULATOR (FOOTER) -->
-    <div id="footer-terminal" class="fixed bottom-4 right-4 z-40 w-[350px] md:w-[450px] bg-zinc-950 border border-zinc-800 rounded-lg shadow-2xl flex flex-col font-mono text-xs transition-all duration-300 max-h-[250px] overflow-hidden">
+    <div id="footer-terminal" style="height: 36px" class="fixed bottom-4 right-4 z-40 w-[calc(100vw-2rem)] max-w-[300px] sm:max-w-[420px] bg-zinc-950 border border-zinc-800 rounded-lg shadow-2xl shadow-black/60 flex flex-col font-mono text-xs transition-all duration-300 max-h-[250px] overflow-hidden">
         <!-- Terminal Header -->
-        <div class="bg-zinc-900 border-b border-zinc-800 px-3 py-2 flex items-center justify-between cursor-pointer" onclick="toggleTerminalCollapse()">
+        <div class="bg-zinc-900 border-b border-zinc-800 px-3 h-9 shrink-0 flex items-center justify-between cursor-pointer" onclick="toggleTerminalCollapse()" role="button" tabindex="0" aria-controls="term-body" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleTerminalCollapse()}">
             <div class="flex items-center space-x-2">
                 <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
                 <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
                 <span class="w-2.5 h-2.5 rounded-full bg-cyber-green/80"></span>
-                <span class="text-[10px] text-zinc-500 font-semibold pl-2">SYSTEM_CONSOLE v1.02</span>
+                <span class="text-[11px] text-zinc-400 pl-2">terminal &middot; try <span class="text-zinc-200">help</span></span>
             </div>
-            <span id="term-collapse-btn" class="text-zinc-500 text-[10px]">[Collapse]</span>
+            <span id="term-collapse-btn" class="text-zinc-500 text-[10px]">[Expand]</span>
         </div>
         <!-- Terminal Logs -->
         <div id="term-body" class="flex-1 p-3 overflow-y-auto space-y-1 text-[11px] text-zinc-400 bg-zinc-950 min-h-[150px] max-h-[180px]">
@@ -883,45 +941,45 @@
             <div id="term-history" class="space-y-1"></div>
             <div class="flex items-center text-zinc-300">
                 <span class="text-cyber-accent mr-1.5">&gt;</span>
-                <input type="text" id="term-input" class="w-full bg-transparent border-none outline-none focus:ring-0 text-white placeholder-zinc-700" placeholder="Type command...">
+                <input type="text" id="term-input" aria-label="Terminal command" autocomplete="off" class="w-full bg-transparent border-none outline-none focus:ring-0 text-white placeholder-zinc-600" placeholder="Type command...">
             </div>
         </div>
     </div>
 
     <!-- FOOTER -->
-    <footer class="border-t border-zinc-800/80 bg-zinc-950 py-12 font-mono text-xs">
+    <footer class="border-t border-zinc-800/80 bg-zinc-950 pt-12 pb-20 sm:pb-12 text-xs">
         <div class="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="space-y-1.5 text-center md:text-left">
-                <p class="text-zinc-300 font-bold tracking-tight">Anshuman Maurya</p>
-                <p class="text-[10px] text-zinc-500">AI/ML Engineer • Builder • Explorer</p>
+                <p class="text-zinc-200 text-sm font-semibold tracking-tight">Anshuman Maurya</p>
+                <p class="text-zinc-500">Machine Learning • AI • Cloud</p>
             </div>
             
-            <div class="text-[10px] text-zinc-500 text-center space-y-1 max-w-sm leading-normal">
+            <div class="text-zinc-500 text-center space-y-1.5 max-w-sm leading-normal">
                 <p>"Built with curiosity and too many terminal sessions."</p>
-                <p class="text-cyber-cyan flex items-center justify-center md:justify-end">
-                    <span class="w-1.5 h-1.5 rounded-full bg-cyber-green animate-pulse mr-1.5"></span>
+                <p class="text-zinc-400 flex items-center justify-center">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyber-green mr-1.5"></span>
                     This website is hosted on my own server.
                 </p>
             </div>
             
             <div class="flex flex-col items-center md:items-end space-y-3 font-sans">
-                <span class="text-zinc-100 font-semibold text-sm tracking-tight">Connect With Me</span>
+                <span class="text-zinc-300 font-medium text-sm">Connect with me</span>
                 <div class="flex items-center space-x-4 text-zinc-400">
-                    <a href="{{ social_links.github }}" target="_blank" class="hover:text-zinc-100 transition-colors" title="GitHub">
-                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <a href="{{ social_links.github }}" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-100 transition-colors" title="GitHub" aria-label="GitHub">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
                             <path d="M9 18c-4.51 2-5-2-7-2"></path>
                         </svg>
                     </a>
-                    <a href="{{ social_links.linkedin }}" target="_blank" class="hover:text-zinc-100 transition-colors" title="LinkedIn">
-                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <a href="{{ social_links.linkedin }}" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-100 transition-colors" title="LinkedIn" aria-label="LinkedIn">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                             <rect x="2" y="9" width="4" height="12"></rect>
                             <circle cx="4" cy="4" r="2"></circle>
                         </svg>
                     </a>
-                    <a href="{{ social_links.email_link }}" class="hover:text-zinc-100 transition-colors" title="Email">
-                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <a href="{{ social_links.email_link }}" class="hover:text-zinc-100 transition-colors" title="Email" aria-label="Email">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <rect x="2" y="4" width="20" height="16" rx="2"></rect>
                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                         </svg>
@@ -1021,6 +1079,7 @@
             toggleCommandPalette();
             const termInput = document.getElementById('term-input');
             termInput.value = cmdStr;
+            if (termCollapsed) toggleTerminalCollapse();
             runTerminalCommand(cmdStr);
         }
 
@@ -1029,6 +1088,8 @@
             const menu = document.getElementById('mobile-menu');
             const icon = document.getElementById('menu-icon');
             menu.classList.toggle('hidden');
+            const menuButton = document.getElementById('menu-button');
+            if (menuButton) menuButton.setAttribute('aria-expanded', String(!menu.classList.contains('hidden')));
             if (menu.classList.contains('hidden')) {
                 icon.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
             } else {
@@ -1052,6 +1113,8 @@
             
             // source repository
             document.getElementById('drawer-github').href = project.github;
+            const repoPath = project.github.replace(/^https?:\/\/github\.com\/?/, '').split('/').filter(Boolean);
+            document.getElementById('drawer-github-label').innerText = repoPath.length > 1 ? 'View source' : 'GitHub profile';
             
             // live deployment trigger
             const demoBtn = document.getElementById('drawer-demo');
@@ -1070,7 +1133,7 @@
             techContainer.innerHTML = '';
             project.technologies.forEach(t => {
                 const span = document.createElement('span');
-                span.className = "text-xs font-mono bg-zinc-950 border border-zinc-800 px-2.5 py-1 rounded text-zinc-300 shadow-inner";
+                span.className = "text-xs bg-zinc-950 border border-zinc-800 px-2.5 py-1 rounded-md text-zinc-300";
                 span.innerText = t;
                 techContainer.appendChild(span);
             });
@@ -1080,11 +1143,11 @@
             flowContainer.innerHTML = '';
             project.pipeline.forEach((pStep, index) => {
                 const stepDiv = document.createElement('div');
-                stepDiv.className = "flex-1 min-w-[120px] bg-zinc-950 border border-zinc-850 p-2.5 rounded shadow space-y-1 relative";
+                stepDiv.className = "flex-1 min-w-[130px] bg-zinc-900 border border-zinc-800 p-3 rounded-md space-y-1 relative";
                 stepDiv.innerHTML = `
-                    <div class="text-[9px] text-zinc-500 font-bold font-mono">0${index+1} / STEP</div>
-                    <div class="text-zinc-100 font-semibold">${pStep.name}</div>
-                    <div class="text-[9px] text-zinc-500 font-sans">${pStep.desc}</div>
+                    <div class="text-[10px] text-zinc-500 font-mono">Step ${index+1}</div>
+                    <div class="text-xs text-zinc-100 font-semibold font-sans">${pStep.name}</div>
+                    <div class="text-[11px] text-zinc-400 font-sans leading-snug">${pStep.desc}</div>
                 `;
                 flowContainer.appendChild(stepDiv);
                 
@@ -1098,6 +1161,8 @@
 
             document.getElementById('project-drawer').classList.remove('hidden');
             document.body.classList.add('overflow-hidden');
+            const closeBtn = document.querySelector('#project-drawer button[aria-label="Close project details"]');
+            if (closeBtn) closeBtn.focus();
         }
 
         function closeProjectDrawer() {
@@ -1105,13 +1170,18 @@
             document.body.classList.remove('overflow-hidden');
         }
 
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !document.getElementById('project-drawer').classList.contains('hidden')) {
+                closeProjectDrawer();
+            }
+        });
+
         // Skills terminal reader console logic
         function showSkillInfo(name, note) {
             const consoleBox = document.getElementById('skill-console-output');
             consoleBox.innerHTML = `
-                <p class="text-cyber-cyan font-bold font-mono">&gt; query_skill("${name}").info</p>
-                <p class="text-xs text-zinc-200 leading-relaxed font-sans">${note}</p>
-                <p class="text-[10px] text-zinc-600 font-mono mt-2">QUERY COMPLETE. RESPONSE_CODE: 200</p>
+                <p class="text-cyber-accent font-semibold font-mono text-sm">${name}</p>
+                <p class="text-sm text-zinc-300 leading-relaxed font-sans">${note}</p>
             `;
         }
 
@@ -1125,8 +1195,8 @@
             const form = e.target;
             const formStatus = document.getElementById('form-status');
             
-            formStatus.innerText = "SENDING_MESSAGE...";
-            formStatus.className = "text-[10px] text-cyber-cyan animate-pulse";
+            formStatus.innerText = "Sending…";
+            formStatus.className = "text-xs text-zinc-400";
             
             // Serialize FormData to a standard JSON object
             const formData = new FormData(form);
@@ -1148,18 +1218,18 @@
             .then(data => {
                 // Formsubmit returns success: "true" (as a string or boolean)
                 if (data.success === "true" || data.success === true) {
-                    formStatus.innerText = "MESSAGE_SENT_SUCCESS";
-                    formStatus.className = "text-[10px] text-cyber-green";
+                    formStatus.innerText = "Thanks — your message has been sent.";
+                    formStatus.className = "text-xs text-cyber-green";
                     form.reset();
                 } else {
-                    formStatus.innerText = "SUBMIT_ERROR";
-                    formStatus.className = "text-[10px] text-red-500";
+                    formStatus.innerText = "Something went wrong. Please email me directly.";
+                    formStatus.className = "text-xs text-red-400";
                     console.error('Formsubmit Error:', data);
                 }
             })
             .catch(err => {
-                formStatus.innerText = "CONNECTION_FAILED";
-                formStatus.className = "text-[10px] text-red-500";
+                formStatus.innerText = "Couldn't send — please check your connection or email me directly.";
+                formStatus.className = "text-xs text-red-400";
                 console.error(err);
             });
         }
@@ -1168,7 +1238,7 @@
         const termInput = document.getElementById('term-input');
         const termHistory = document.getElementById('term-history');
         const termBody = document.getElementById('term-body');
-        let termCollapsed = false;
+        let termCollapsed = true;
 
         function toggleTerminalCollapse() {
             const term = document.getElementById('footer-terminal');
@@ -1213,7 +1283,7 @@
                     response = 'Active Projects:<br>' + projectsData.map(p => `• <span class="text-zinc-200 font-bold">${p.name}</span> - ${p.subtitle}`).join('<br>');
                     break;
                 case 'skills':
-                    response = 'Core languages: C, C++, Python, SQL.<br>Deep learning & ML: TensorFlow, Keras, XGBoost, Scikit-Learn.<br>AI/Agents: LangChain, LangGraph, RAG vector retrievals.';
+                    response = 'Core languages: C, C++, Python, SQL.<br>Machine learning & deep learning: TensorFlow, Keras, XGBoost, Scikit-Learn.<br>AI/Agents: LangChain, LangGraph, RAG vector retrievals.<br>Cloud & infrastructure: Docker, Linux, Coolify, Cloudflare Tunnel, Streamlit Cloud, Railway.';
                     break;
                 case 'contact':
                     response = 'Email: <a href="mailto:anshumanmaurya776@gmail.com" class="text-cyber-cyan underline">anshumanmaurya776@gmail.com</a><br>Phone: +91-8318463051<br>Loc: Ghaziabad, India';
@@ -1308,6 +1378,23 @@
         
         // Initial call
         updateLiveStats();
+
+        // Highlight the nav link for the section currently in view
+        (function () {
+            const links = document.querySelectorAll('.nav-link');
+            if (!('IntersectionObserver' in window) || !links.length) return;
+            const byId = {};
+            links.forEach(l => { byId[l.getAttribute('href').slice(1)] = l; });
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    links.forEach(l => l.classList.remove('is-active'));
+                    const link = byId[entry.target.id];
+                    if (link) link.classList.add('is-active');
+                });
+            }, { rootMargin: '-45% 0px -50% 0px' });
+            document.querySelectorAll('main section[id]').forEach(sec => observer.observe(sec));
+        })();
     </script>
 </body>
 </html>

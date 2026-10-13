@@ -37,6 +37,7 @@ from data import (
     LAB_SERVICES,
     PUBLISHED_APPLICATIONS,
     CURRENTLY_BUILDING,
+    FOCUS_AREAS,
     SKILLS
 )
 
@@ -164,9 +165,11 @@ async def read_index(request: Request):
     """Render portfolio homepage"""
     try:
         projects_json = json.dumps(PROJECTS)
+        # Keyword arguments work with both older and newer Starlette signatures
         return templates.TemplateResponse(
-            "index.html",
-            {
+            request=request,
+            name="index.html",
+            context={
                 "request": request,
                 "personal_info": PERSONAL_INFO,
                 "social_links": SOCIAL_LINKS,
@@ -177,6 +180,7 @@ async def read_index(request: Request):
                 "lab_services": LAB_SERVICES,
                 "published_applications": PUBLISHED_APPLICATIONS,
                 "currently_building": CURRENTLY_BUILDING,
+                "focus_areas": FOCUS_AREAS,
                 "skills": SKILLS,
                 "youtube_videos": get_latest_youtube_videos(),
                 "web3forms_key": WEB3FORMS_KEY
@@ -218,7 +222,7 @@ async def get_status():
         }
     except Exception as e:
         logger.error(f"Error retrieving status: {e}")
-        return {"status": "error", "message": "Failed to retrieve status"}, 500
+        return JSONResponse({"status": "error", "message": "Failed to retrieve status"}, status_code=500)
 
 @app.get("/health", response_class=JSONResponse, include_in_schema=False)
 async def health_check():

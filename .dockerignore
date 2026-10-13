@@ -1,0 +1,18 @@
+# Keep the production image small and free of local/secret files
+.git
+.gitignore
+.venv
+venv/
+env/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+node_modules/
+static/css/input.css
+tailwind.config.js
+*.log
+.vscode/
+.idea/
+certs/

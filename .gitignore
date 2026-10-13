@@ -70,7 +70,6 @@ certs/
 htmlcov/
 
 # Docker
-.dockerignore
 docker-compose.override.yml
 
 # OS Files
